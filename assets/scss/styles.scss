@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+$home-bckg: #EBE9E1;
+$prime-black: #252422;
+$sub-black: #403D39;
+
+body {
+    display: flex;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background-color: $home-bckg;
+}
+
+h1, h2 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+h1 {
+    color: $prime-black;
+    font-size: 6em;
+}
+
+h2 {
+    color: $sub-black;
+    font-size: 4em;
+}
+
+h1.drawn {
+    position: absolute;
+    top: 15%;
+    font-size: clamp(50vh, 50%, 70vh);
+}
+
+#anim-test {
+    width: 50px;
+    height: 50px;
+    margin-left: 30px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+/* START TUTORIAL STYLES */
+.loader {
+    position: fixed;
+    width: 100vw;
+    height: 200vh;
+    pointer-events: none;
+    background-color: $home-bckg;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+}
