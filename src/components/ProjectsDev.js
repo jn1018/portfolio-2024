@@ -1,8 +1,8 @@
-import {motion, AnimatePresence} from "framer-motion";
-import {useRef, useEffect, useState} from "react";
+import {motion, AnimatePresence} from 'framer-motion';
+import {useRef, useEffect, useState} from 'react';
 import devimages from "./devimages";
 
-function ProjectsDev() {
+export default function ProjectsDev() {
     const [width, setWidth] = useState(0);
     const carousel = useRef();
     useEffect(() => {
@@ -23,7 +23,7 @@ function ProjectsDev() {
             <motion.div ref={carousel} 
               className="project-carousel" 
               whileTap={{cursor: "grabbing"}}
-              key="drawn"
+              key="drawn-projects"
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -100, opacity: 0 }}
@@ -46,5 +46,3 @@ function ProjectsDev() {
         </>
     )
 }
-
-export default ProjectsDev;

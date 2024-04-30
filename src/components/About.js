@@ -1,7 +1,7 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import {motion, AnimatePresence} from 'framer-motion';
+import codingdesk from '../assets/images/sitting-at-desk-placeholder.svg';
 
-function AboutMe() {
+export default function About() {
     return (
         <>
         <AnimatePresence>
@@ -30,8 +30,7 @@ function AboutMe() {
     Code Council, and learned how to play guitar chords that don't require any barring.</p>
             </motion.section>
         </AnimatePresence>
+        <img src={codingdesk} className="coding-desk" alt="Sitting at the desk coding and drinking coffee" />
         </>
     )
 }
-
-export default AboutMe;

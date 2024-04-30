@@ -5,9 +5,16 @@
 }
 
 
+html, body {
+	margin: 0;
+}
+* {
+    box-sizing: border-box; 
+}
 body {
     background: $background-col url('../images/ivory-off-white-paper-texture.jpg') no-repeat center center;
     background-size: cover; 
+    background-attachment: fixed;
     font-family: "citrine-variable", sans-serif;
     font-variation-settings: "wght" 400;
     color: $text-col;
@@ -16,22 +23,77 @@ body {
 }
 header {
     width: 100vw;
-    height: 34px;
+    height: 0;
+    display: flex;
+    justify-content:flex-end;
 }
 h1 {
-    font-variation-settings: "wght" 600;
+    font-family: "Cabin Sketch", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     width: max-content;
     color: $text-col;
 }
+.main {
+    margin-left: 25px;
+}
 section.about-copy {
-    width: 90%;
+    width: 60%;
 }
 .drawn-title {
-    min-width: 45%;
-    opacity: 0.8
+    min-width: 35%;
+    opacity: 0.9
+}
+.coding-desk {
+    position: fixed;
+    width: 40%;
+    height: 48%;
+    bottom: -50px;
+    right: -40px;
+    opacity: 0.9
+}
+.projects-nav {
+    ul {
+        a {
+            margin-left: 0;
+        }
+        margin: 0;
+        padding: 0;
+    }
 }
 h1.feature-heading {
     font-size: 1rem;
+}
+aside {
+    background-color: $background-col;
+    width: 18.75rem;
+    height: 100vh;
+    position: fixed;
+    z-index: 10;
+    right: 0;
+}
+.nav-container {
+    margin: 4.5rem 1.4rem;
+}
+.btn-container {
+    position: fixed;
+    z-index: 11;
+}
+.nav-item {
+    color: $text-col;
+    font-family: "Cabin Sketch", sans-serif;
+    text-decoration: none;
+    font-size: 1.95rem;
+    font-weight: 700;
+    display: block;
+    margin: 20px;
+}
+button {
+    cursor: pointer;
+    margin: 1.25rem;
+    border: none;
+    padding: 0.5rem 1rem;
+    background: transparent;
 }
 nav.main-nav {
 
@@ -40,16 +102,13 @@ nav.main-nav {
         font-size: 1.1rem;
         display: block;
         text-decoration: none;
-        font-variation-settings: "wght" 600;
         margin: 8px 0 8px 8px;
     }
 
-    display: flex;
-    justify-content: right;
-    padding-right: 8px;
 }
 
 /* Gallery carousel */
+
 .project-carousel {
     cursor: grab;
     overflow: hidden;
@@ -74,17 +133,86 @@ nav.main-nav {
     padding: 16px;
 }
 
+
+/* Project display panels */
+
+.panel-outer-layout {
+	position: relative; 
+    height: 300vh;
+}
+.panel-container {
+    display: flex; 
+    overflow: hidden; 
+    position: sticky; 
+    top: 0; 
+    align-items: center; 
+    height: 100vh; 
+}
+.panel-inner-container {
+    display: flex; 
+    gap: 1rem; 
+}
+.panel {
+    overflow: hidden; 
+    position: relative; 
+    height: 450px;
+    width: 450px;
+    border-right: 1px solid $text-col;
+}
+.panel-image {
+    position: absolute; 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; 
+    z-index: 0; 
+    height: 66%;
+    width: 96%;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms; 
+    transition-duration: 300ms; 
+}
+.panel-info {
+    display: grid; 
+    position: absolute; 
+    right: 0;
+    bottom: 0;
+    left: 0; 
+    z-index: 10; 
+    place-content: center; 
+}
+.panel-info-title {
+    padding: 2rem; 
+    font-size: 1.2rem;
+    line-height: 1; 
+    font-weight: 900; 
+    color: $text-col; 
+}
+.panels-bottom {
+    height: 1px;
+}
+
+/* --------------------------- */
 /* ------ Media Queries ------ */
 @media (min-width: 1000px) {
     .drawn-title {
-        min-width: 45%;
-        width: 45%
+        min-width: 35%;
+        width: 35%
     }
 }
 
 @media (max-width: 999px) {
     .drawn-title {
-        width: 85%
+        width: 70%
+    }
+    .coding-desk {
+        bottom: -110px;
+        height: 54%;
+        width: 55%;
+    }
+    section.about-copy {
+        width: 90%;
     }
 }
 
