@@ -1,3 +1,5 @@
+import React, {useState, useEffect} from "react";
+import axios from "axios";
 import {motion, useTransform, useScroll} from "framer-motion";
 import {useRef} from "react";
 
@@ -19,40 +21,49 @@ const HorizontalScrollCarousel = () => {
   });
 
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
+  const [data, setData] = useState([]);
+
+  // Fetch data using Axios
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://portfolio-2024-API.local/projects/read.php");
+      setData(response.data.records);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  // Call fetchData on component mount
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <section ref={targetRef} className="panel-outer-layout">
       <div className="panel-container">
         <motion.div style={{x}} className="panel-inner-container">
-          {cards.map((card) => {
-            return <Card card={card} key={card.id} />;
-          })}
+          {data.map((post) => (
+            <div key={post.id}
+              className="panel"
+              >
+              <div
+                style={{
+                  backgroundImage: `url(${post.image_path_1})`, 
+                  backgroundSize: "cover",
+                  backgroundPosition: "center"
+                }}
+                className="panel-image"
+              ></div>
+              <div className="panel-info">
+                <p className="panel-info-title">
+                  {post.name}
+                </p>
+              </div>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>
-  );
-};
-
-const Card = ({card}) => {
-  return (
-    <div
-      key={card.id}
-      className="panel"
-    >
-      <div
-        style={{
-          backgroundImage: `url(${card.url})`, 
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-        className="panel-image"
-      ></div>
-      <div className="panel-info">
-        <p className="panel-info-title">
-          {card.title}
-        </p>
-      </div>
-    </div>
   );
 };
 
