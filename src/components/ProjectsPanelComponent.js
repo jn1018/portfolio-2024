@@ -7,14 +7,17 @@ const PanelComponent = (props) => {
   return (
     <div className="bg-neutral-800">
       <div style={{height: "40%"}}></div>
-      <HorizontalScrollCarousel />
+      <HorizontalScrollCarousel projectType={props.projectType} />
       <div className="panels-bottom">
       </div>
     </div>
   );
 };
 
-const HorizontalScrollCarousel = () => {
+const HorizontalScrollCarousel = (props) => {
+  useEffect(() => {
+    console.log({props});
+  });
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -26,7 +29,11 @@ const HorizontalScrollCarousel = () => {
   // Fetch data using Axios
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://portfolio-2024-API.local/projects/read.php");
+      const response = await axios.get("http://portfolio-2024-API.local/projects/read_by_type.php", {
+        params: {
+          type: props.projectType
+        }
+      });
       setData(response.data.records);
     } catch (error) {
       console.error("Error fetching data:", error);

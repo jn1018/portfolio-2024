@@ -4,7 +4,7 @@ export default function ProjectsDev() {
 
     return (
         <>
-            <ProjectsPanelComponent projectType="" />
+            <ProjectsPanelComponent projectType="3" />
         </>
     );
 }
