@@ -1,10 +1,10 @@
-import ProjectsPanelComponent from "./ProjectsPanelComponent";
+import PanelComponent from "./ProjectsPanelComponent";
 
 export default function ProjectsDev() {
 
     return (
         <>
-            <ProjectsPanelComponent projectType="3" />
+            <PanelComponent projectType="3" />
         </>
     );
 }

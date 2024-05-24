@@ -1,22 +1,23 @@
 /* Source variables for main stylesheet */
-@font-face {
-  font-family: "Citrine Variable";
-  src: url("https://fonts.adobe.com/fonts/citrine-variable?vf-instance=Bold&vf-font-size=27&vf-font=CitrineVariable-Lighte") format("truetype");
+* {
+  box-sizing: border-box;
 }
+
 html, body {
   margin: 0;
 }
 
-* {
-  box-sizing: border-box;
+html {
+  font-size: 100%;
 }
 
 body {
   background: #F7F6F3 url("../images/ivory-off-white-paper-texture.jpg") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
-  font-family: "citrine-variable", sans-serif;
-  font-variation-settings: "wght" 400;
+  font-family: "semplicitapro", sans-serif;
+  font-variation-settings: "wght" 600;
+  font-size: 0.95em;
   color: #4a4841;
   height: 100vh;
   width: 100vw;
@@ -33,8 +34,13 @@ h1 {
   font-family: "Cabin Sketch", sans-serif;
   font-weight: 400;
   font-style: normal;
+  font-size: 5.5rem;
   width: max-content;
-  color: #4a4841;
+  color: #6A6A69;
+}
+
+p {
+  line-height: 1.2rem;
 }
 
 .main {
@@ -54,8 +60,8 @@ section.about-copy {
   position: fixed;
   width: 40%;
   height: 48%;
-  bottom: -50px;
-  right: -40px;
+  bottom: -10%;
+  right: -10%;
   opacity: 0.9;
 }
 
@@ -72,9 +78,11 @@ h1.feature-heading {
 }
 
 aside {
-  background-color: #F7F6F3;
+  background: transparent url("../images/menu-paper-background.png") no-repeat top left;
+  background-size: cover;
+  filter: drop-shadow(-3px 3px 5px #2b2b2b);
   width: 18.75rem;
-  height: 100vh;
+  height: 472px;
   position: fixed;
   z-index: 10;
   right: 0;
@@ -83,20 +91,46 @@ aside {
 .nav-container {
   margin: 4.5rem 1.4rem;
 }
+.nav-container .nav-item {
+  margin: 0 0 30px 0;
+  font-size: 1.95rem;
+}
 
 .btn-container {
   position: fixed;
+  width: 50px;
+  height: 25px;
   z-index: 11;
 }
 
 .nav-item {
   color: #4a4841;
-  font-family: "Cabin Sketch", sans-serif;
+  font-family: "Nothing You Could Do", cursive;
   text-decoration: none;
-  font-size: 1.95rem;
-  font-weight: 700;
+  font-weight: 400;
   display: block;
-  margin: 20px;
+  width: max-content;
+}
+
+.projects-nav {
+  position: relative;
+  margin-top: 0;
+}
+.projects-nav h1 {
+  font-size: 3.2rem;
+  margin: 60px 0 10px 0;
+}
+.projects-nav ul {
+  display: inline;
+}
+.projects-nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 12px 0 0;
+}
+.projects-nav ul li .nav-item {
+  margin: 0 20px 0 0;
+  font-size: 1.95rem;
 }
 
 button {
@@ -104,7 +138,27 @@ button {
   margin: 1.25rem;
   border: none;
   padding: 0.5rem 1rem;
-  background: transparent;
+}
+
+.hamburger {
+  width: 35px;
+  height: 35px;
+  opacity: 0;
+}
+
+.b {
+  fill: #4a4a4a;
+  stroke-width: 1px;
+}
+
+.closed {
+  background: transparent url("../images/hamburger-menu-open.svg") center center no-repeat;
+}
+
+.open {
+  width: 35px;
+  height: 35px;
+  background: transparent url("../images/hamburger-menu-close.svg") center center no-repeat;
 }
 
 nav.main-nav a {
@@ -191,11 +245,16 @@ nav.main-nav a {
   bottom: 0;
   left: 0;
   z-index: 10;
-  place-content: center;
+  place-content: left;
+}
+
+.panel-info-subtitle {
+  font-weight: 400;
+  color: #6A6A69;
 }
 
 .panel-info-title {
-  padding: 2rem;
+  padding: 2rem 2rem 1rem 0;
   font-size: 1.2rem;
   line-height: 1;
   font-weight: 900;
@@ -206,6 +265,36 @@ nav.main-nav a {
   height: 1px;
 }
 
+/* Main Animation */
+.anim-container {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  width: 600px;
+}
+
+/* Loader */
+.loader {
+  border: 6px solid #f3f3f3; /* Light grey border */
+  border-top: 6px solid #3498db; /* Blue border */
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 /* --------------------------- */
 /* ------ Media Queries ------ */
 @media (min-width: 1000px) {
@@ -214,7 +303,10 @@ nav.main-nav a {
     width: 35%;
   }
 }
-@media (max-width: 999px) {
+@media (min-width: 700px) and (max-width: 999px) {
+  h1 {
+    font-size: 3.5rem;
+  }
   .drawn-title {
     width: 70%;
   }
@@ -224,7 +316,20 @@ nav.main-nav a {
     width: 55%;
   }
   section.about-copy {
+    width: 80%;
+  }
+}
+@media (max-width: 699px) {
+  h1 {
+    font-size: 2.1rem;
+  }
+  section.about-copy {
     width: 90%;
+  }
+  .coding-desk {
+    bottom: -190px;
+    height: 58%;
+    width: 60%;
   }
 }
 

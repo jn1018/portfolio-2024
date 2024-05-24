@@ -23,14 +23,17 @@ const ProjectTypes = () => {
   
     return (
       <div className="projects-nav">
+        <h1>View Projects:</h1>
         <ul>
           {data.map((post) => (
-            <Link key={post.id} to="/projects-design" 
-              className="nav-item" 
-              style={{display: "block"}} 
-            >
-            {post.name}
-            </Link>
+            <li>
+              <Link key={post.id} to="/projects-design" 
+                className="nav-item" 
+                style={{display: "block"}} 
+              >
+              {post.name}
+              </Link>
+            </li>
           ))}
         </ul>
       </div>

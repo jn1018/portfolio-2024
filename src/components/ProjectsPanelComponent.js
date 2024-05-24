@@ -15,9 +15,6 @@ const PanelComponent = (props) => {
 };
 
 const HorizontalScrollCarousel = (props) => {
-  useEffect(() => {
-    console.log({props});
-  });
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -62,6 +59,7 @@ const HorizontalScrollCarousel = (props) => {
                 className="panel-image"
               ></div>
               <div className="panel-info">
+                <p className="panel-info-subtitle">Microsite</p>
                 <p className="panel-info-title">
                   {post.name}
                 </p>
