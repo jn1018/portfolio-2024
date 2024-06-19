@@ -1,7 +1,7 @@
 // ReactRouter import for main navigation
 import React, {useEffect, useState} from 'react';
 import {motion as m} from 'framer-motion';
-import drawntitle from '../assets/images/drawn-title.svg';
+import drawntitle from '../assets/images/drawn-title-heading.svg';
 import codingdesk from '../assets/images/sitting-at-desk-pencil.svg';
 import ProjectTypes from "./ProjectTypes";
 
@@ -36,17 +36,9 @@ export default function Homepage() {
             <m.img src={drawntitle} alt="Drawn" className="drawn-title" 
               key="drawn-home"
               initial={{ x: -300, opacity: 0 }}
-              animate={{ x: 0, opacity: 0.65, transition: {duration: 0.5} }}
+              animate={{ x: 0, opacity: 0.85, transition: {duration: 0.5} }}
               exit={{ x: 300, opacity: 0, transition: {duration: 0.5} }}
             />
-            <m.p className="feature-heading" 
-              key="feature-h1"
-              initial={{ x: -300, opacity: 0 }}
-              animate={{ x: 0, opacity: 1, transition: {duration: 0.5} }}
-              exit={{ x: 300, opacity: 0, transition: {duration: 0.5} }}
-            >
-            Art, design, and development portfolio of Jeff Nishihira
-            </m.p>
             <ProjectTypes />
 
             <img src={codingdesk} className="coding-desk" alt="Sitting at the desk coding and drinking coffee" />

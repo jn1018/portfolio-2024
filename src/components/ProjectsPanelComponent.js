@@ -1,16 +1,25 @@
-import React, {useState, useEffect} from "react";
+import React, {useRef, useState, useEffect} from "react";
 import axios from "axios";
-import {motion, useTransform, useScroll} from "framer-motion";
-import {useRef} from "react";
+import {motion, AnimatePresence, useTransform, useScroll, useCycle} from "framer-motion";
+
+// Import Projects component
+import ProjectDetails from "./ProjectDetails";
+
+// Disable body scrolling when project modal is open
+const setHidden = () => {
+  if (document.body.style.overflow !== "hidden") {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "scroll";
+  }
+};
 
 const PanelComponent = (props) => {
   return (
-    <div className="bg-neutral-800">
-      <div style={{height: "40%"}}></div>
+    <>
       <HorizontalScrollCarousel projectType={props.projectType} />
-      <div className="panels-bottom">
-      </div>
-    </div>
+      <div className="panels-bottom"></div>
+    </>
   );
 };
 
@@ -19,9 +28,12 @@ const HorizontalScrollCarousel = (props) => {
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
-
-  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
+  
+  const x = useTransform(scrollYProgress, [0, 1], ["0.5%", "-95%"]);
+  const inputRef = useRef(null);
   const [data, setData] = useState([]);
+  const [open, cycleOpen] = useCycle(false, true);
+  const [project, setProject] = useState(1);
 
   // Fetch data using Axios
   const fetchData = async () => {
@@ -43,73 +55,63 @@ const HorizontalScrollCarousel = (props) => {
   }, []);
 
   return (
+    <>
     <section ref={targetRef} className="panel-outer-layout">
       <div className="panel-container">
-        <motion.div style={{x}} className="panel-inner-container">
+        <motion.div style={{x}} 
+          ref={inputRef}
+          className="panel-inner-container">
+
           {data.map((post) => (
             <div key={post.id}
-              className="panel"
+              className={"panel project_" + post.id}
               >
               <div
                 style={{
                   backgroundImage: `url(${post.image_path_1})`, 
-                  backgroundSize: "cover",
-                  backgroundPosition: "center"
+                  zIndex: "3"
                 }}
-                className="panel-image"
+                className="panel-image-lines" 
+                onClick={function(){ cycleOpen(); setHidden(); setProject(post.id);}} 
               ></div>
+              <div style={{
+                backgroundImage: `url(${post.image_path_2})`, 
+                zIndex: "2"
+                }} 
+                className="panel-image"></div>
               <div className="panel-info">
-                <p className="panel-info-subtitle">Microsite</p>
                 <p className="panel-info-title">
                   {post.name}
                 </p>
+                <p className="panel-info-subtitle"><a href={post.project_url} target="_blank">View URL</a></p>
               </div>
             </div>
           ))}
+          
         </motion.div>
       </div>
     </section>
+
+    <AnimatePresence>
+      {open && (
+        <motion.aside 
+          id="modal-aside" 
+          initial={{bottom: -500}}
+          animate={{bottom: 0}}
+          exit={{
+            bottom: -500,
+            transition: {delay: 0.2, duration: 0.3}
+          }}
+        >
+          <div className="project-details">
+            <ProjectDetails project={project} />
+          </div>
+          <button id="project-modal-close" onClick={function(){ cycleOpen(); setHidden()}}>[x]</button>
+        </motion.aside>
+      )}
+    </AnimatePresence>
+  </>
   );
 };
 
 export default PanelComponent;
-
-const cards = [
-  {
-    url: "https://www.jeffndesign.net/images/project-icc-1.svg",
-    url2: "https://www.iccsafe.org/wp-content/uploads/22-21066_ICC_website_HDRs_1920x443_FINALf_people.jpg",
-    title: "International Code Council (ICC)",
-    id: 1,
-  },
-  {
-    url: "https://www.jeffndesign.net/images/project-ppp-1.svg",
-    url2: "https://ppp.iccsafe.org/images/main-block-img.jpg",
-    title: "ICC Preferred Provider",
-    id: 2,
-  },
-  {
-    url: "https://www.jeffndesign.net/images/project-nlu-1.svg",
-    url2: "https://ppp.iccsafe.org/images/main-block-img.jpg",
-    title: "National Louis University",
-    id: 3,
-  },
-  {
-    url: "https://www.jeffndesign.net/images/large/projects_3_1.jpg",
-    url2: "https://www.jeffndesign.net/images/large/projects_3_1.jpg",
-    title: "Chipotle",
-    id: 4,
-  },
-  {
-    url: "../assets/images/dev5.jpg",
-    url2: "../assets/images/dev5.jpg",
-    title: "Title 5",
-    id: 5,
-  },
-  {
-    url: "../assets/images/dev6.jpg",
-    url2: "../assets/images/dev6.jpg",
-    title: "Title 6",
-    id: 6,
-  },
-
-];

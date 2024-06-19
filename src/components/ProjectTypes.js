@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {Link} from 'react-router-dom';
 
+import selected from '../assets/images/selected-projects.svg';
+
 const ProjectTypes = () => {
     // State to store the fetched data
     const [data, setData] = useState([]);
@@ -23,7 +25,7 @@ const ProjectTypes = () => {
   
     return (
       <div className="projects-nav">
-        <h1>View Projects:</h1>
+        <img src={selected} className="view-project-heading" alt="View Selected Projects" />
         <ul>
           {data.map((post) => (
             <li>

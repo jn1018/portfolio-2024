@@ -18,17 +18,15 @@ function App() {
     <Helmet>
         <title>Drawn ~ Art, Design and Development portfolio of Jeff Nishihira</title>
         <link rel="stylesheet" href="https://use.typekit.net/hvj7zun.css"></link>
-        <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap" rel="stylesheet"></link>
-        <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></link>
         <meta name="description" content="Design, development, and art portfolio of Jeff Nishihira" />
     </Helmet>
+    <div className="dimmer"></div>
     <header>
         <MainNav />
     </header>
-    <div class="main">
+    <div className="main">
         <AnimatedRoutes />
     </div>
-    <footer></footer>
     </>
   );
 }

@@ -1,4 +1,8 @@
 /* Source variables for main stylesheet */
+@font-face {
+  font-family: "DRAFTSMAN_CAPS";
+  src: url("../fonts/draftsman-caps.ttf");
+}
 * {
   box-sizing: border-box;
 }
@@ -9,6 +13,7 @@ html, body {
 
 html {
   font-size: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -23,6 +28,28 @@ body {
   width: 100vw;
 }
 
+.dimmer {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 2;
+  background-color: #000;
+  opacity: 0.3;
+  display: none;
+}
+
+.grunge-div {
+  width: 100%;
+  height: 100%;
+  background: transparent url("../images/grunge-overlay-1.png") center center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+}
+
 header {
   width: 100vw;
   height: 0;
@@ -31,16 +58,23 @@ header {
 }
 
 h1 {
-  font-family: "Cabin Sketch", sans-serif;
+  font-family: "DRAFTSMAN_CAPS", cursive;
   font-weight: 400;
   font-style: normal;
-  font-size: 5.5rem;
-  width: max-content;
+  text-transform: uppercase;
+  transform: skew(-11deg, 0);
+  letter-spacing: 4px;
+  font-size: 4.5rem;
   color: #6A6A69;
 }
 
+.view-project-heading {
+  width: 40%;
+}
+
 p {
-  line-height: 1.2rem;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
 }
 
 .main {
@@ -52,8 +86,11 @@ section.about-copy {
 }
 
 .drawn-title {
+  position: fixed;
+  top: 0;
   min-width: 35%;
   opacity: 0.9;
+  margin-left: -24px;
 }
 
 .coding-desk {
@@ -65,19 +102,7 @@ section.about-copy {
   opacity: 0.9;
 }
 
-.projects-nav ul {
-  margin: 0;
-  padding: 0;
-}
-.projects-nav ul a {
-  margin-left: 0;
-}
-
-h1.feature-heading {
-  font-size: 1rem;
-}
-
-aside {
+aside#menu-aside {
   background: transparent url("../images/menu-paper-background.png") no-repeat top left;
   background-size: cover;
   filter: drop-shadow(-3px 3px 5px #2b2b2b);
@@ -96,24 +121,54 @@ aside {
   font-size: 1.95rem;
 }
 
+#b-one, #b-two, #b-three {
+  fill: none;
+  stroke: #6A6A69;
+  stroke-miterlimit: 10;
+  stroke-width: 3px;
+  visibility: hidden;
+}
+
 .btn-container {
   position: fixed;
-  width: 50px;
-  height: 25px;
+  cursor: pointer;
+  background: transparent url("../images/grunge-overlay-small.png") center center;
+  background-attachment: fixed;
+  width: 60px;
+  height: 35px;
+  top: 35px;
+  right: 25px;
   z-index: 11;
+}
+
+#button-lines {
+  position: fixed;
+  top: 35px;
+  right: 25px;
+  z-index: 10;
 }
 
 .nav-item {
   color: #4a4841;
-  font-family: "Nothing You Could Do", cursive;
+  font-family: "DRAFTSMAN_CAPS", cursive;
   text-decoration: none;
   font-weight: 400;
   display: block;
   width: max-content;
 }
 
+nav.main-nav a {
+  color: #4a4841;
+  font-size: 1.1rem;
+  display: block;
+  text-decoration: none;
+  margin: 8px 0 8px 8px;
+}
+
+/* Projects Nav */
 .projects-nav {
-  position: relative;
+  position: fixed;
+  bottom: 16px;
   margin-top: 0;
 }
 .projects-nav h1 {
@@ -127,49 +182,18 @@ aside {
   list-style-type: none;
   display: inline-block;
   margin: 0 12px 0 0;
+  padding: 0;
 }
 .projects-nav ul li .nav-item {
   margin: 0 20px 0 0;
   font-size: 1.95rem;
 }
-
-button {
-  cursor: pointer;
-  margin: 1.25rem;
-  border: none;
-  padding: 0.5rem 1rem;
+.projects-nav ul a {
+  margin-left: 0;
 }
 
-.hamburger {
-  width: 35px;
-  height: 35px;
-  opacity: 0;
-}
-
-.b {
-  fill: #4a4a4a;
-  stroke-width: 1px;
-}
-
-.closed {
-  background: transparent url("../images/hamburger-menu-open.svg") center center no-repeat;
-}
-
-.open {
-  width: 35px;
-  height: 35px;
-  background: transparent url("../images/hamburger-menu-close.svg") center center no-repeat;
-}
-
-nav.main-nav a {
-  color: #4a4841;
-  font-size: 1.1rem;
-  display: block;
-  text-decoration: none;
-  margin: 8px 0 8px 8px;
-}
-
-/* Gallery carousel */
+/* Project Gallery carousel (draggable) */
+/* Move the following items to a separate project */
 .project-carousel {
   cursor: grab;
   overflow: hidden;
@@ -195,22 +219,24 @@ nav.main-nav a {
   pointer-events: none;
 }
 
+/* END Move the following items to a separate project */
 /* Project display panels */
 .panel-outer-layout {
   position: relative;
-  height: 300vh;
+  height: 100vh;
 }
 
 .panel-container {
   display: flex;
   overflow: hidden;
-  position: sticky;
   top: 0;
   align-items: center;
   height: 100vh;
 }
 
 .panel-inner-container {
+  position: fixed;
+  bottom: 0;
   display: flex;
   gap: 1rem;
 }
@@ -220,10 +246,9 @@ nav.main-nav a {
   position: relative;
   height: 450px;
   width: 450px;
-  border-right: 1px solid #4a4841;
 }
 
-.panel-image {
+.panel-image, .panel-image-lines {
   position: absolute;
   top: 0;
   right: 0;
@@ -232,6 +257,9 @@ nav.main-nav a {
   z-index: 0;
   height: 66%;
   width: 96%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
@@ -254,7 +282,7 @@ nav.main-nav a {
 }
 
 .panel-info-title {
-  padding: 2rem 2rem 1rem 0;
+  padding: 1rem 1rem 1rem 0;
   font-size: 1.2rem;
   line-height: 1;
   font-weight: 900;
@@ -263,6 +291,202 @@ nav.main-nav a {
 
 .panels-bottom {
   height: 1px;
+}
+
+.panel-image-lines, .panel-image {
+  cursor: pointer;
+  border: 12px solid #4a4841;
+  border-image: url("../images/horiz-line-400.svg") 10/8px/1px stretch;
+  transition: opacity 0.5s ease-out;
+  -moz-transition: opacity 0.5s ease-out;
+  -webkit-transition: opacity 0.5s ease-out;
+  -o-transition: opacity 0.5s ease-out;
+}
+
+.panel-image-lines {
+  opacity: 1;
+}
+
+.panel-image {
+  opacity: 0;
+}
+
+.project_1 .panel-image-lines {
+  background-size: 132%;
+  background-position: 54% 45%;
+}
+
+.project_2 .panel-image-lines {
+  background-size: 135%;
+  background-position: 55% 8%;
+}
+
+.project_3 .panel-image-lines {
+  background-size: 71%;
+  background-position: 58px -11px;
+}
+
+.project_4 .panel-image-lines {
+  background-size: 70%;
+  background-position: 0 112%;
+}
+
+.project_6 .panel-image-lines {
+  background-size: 86%;
+  background-position: 98% -12px;
+}
+
+.project_7 .panel-image-lines {
+  background-size: 147%;
+  background-position: 41% 5px;
+}
+
+.project_8 .panel-image-lines {
+  background-size: 115%;
+  background-position: -22% 33px;
+}
+
+.project_1 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_1 .panel-image-lines:hover + .panel-image {
+  opacity: 1;
+}
+
+.project_2 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_2 .panel-image-lines:hover + .panel-image {
+  opacity: 1;
+}
+
+.project_3 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_3 .panel-image-lines:hover + .panel-image {
+  opacity: 1;
+}
+
+.project_4 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_4 .panel-image-lines:hover + .panel-image {
+  opacity: 1;
+}
+
+.project_5 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_5 .panel-image-lines:hover + .panel-image {
+  opacity: 1;
+}
+
+.project_6 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_6 .panel-image-lines:hover + .panel-image {
+  opacity: 1;
+}
+
+.project_7 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_7 .panel-image-lines:hover + .panel-image {
+  opacity: 1;
+}
+
+.project_8 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_8 .panel-image-lines:hover + .panel-image {
+  opacity: 1;
+}
+
+/* Project Modal */
+aside#modal-aside {
+  background: #F7F6F3 url("../images/ivory-off-white-paper-texture.jpg") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  filter: drop-shadow(-3px 3px 5px #2b2b2b);
+  width: 90%;
+  height: 85%;
+  max-height: 100vh;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  left: 50%;
+  margin-left: -45%;
+}
+
+aside#modal-aside .project-details {
+  padding: 24px;
+  text-align: center;
+  overflow: auto;
+  height: 100%;
+  max-height: 100vh;
+  position: relative;
+}
+
+#project-modal-close {
+  cursor: pointer;
+  position: fixed;
+  background: transparent;
+  border: none;
+  font-size: 40px;
+  top: 30px;
+  right: 30px;
+}
+
+h1.project-page-heading {
+  display: block;
+  text-align: left;
+  text-transform: uppercase;
+  transform: skew(-11deg, 0);
+  letter-spacing: 4px;
+  font-family: "DRAFTSMAN_CAPS";
+  font-size: 1.9rem;
+}
+
+.cap-case {
+  font-size: 2.5rem;
+}
+
+/* Individual Project Components */
+.details-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding-right: 20px;
+}
+.details-container .details-images {
+  width: 60%;
+}
+.details-container .details-images img {
+  width: 95%;
+}
+.details-container .details-copy {
+  width: 40%;
+  text-align: left;
+  display: block;
+  position: sticky;
+  top: 0;
+}
+.details-container .details-copy p {
+  font-size: 1rem;
+  line-height: 1.45rem;
+}
+.details-container .details-copy .fixed-copy {
+  position: fixed;
+  width: 39%;
+  top: 25px;
 }
 
 /* Main Animation */
@@ -295,8 +519,9 @@ nav.main-nav a {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-/* --------------------------- */
-/* ------ Media Queries ------ */
+/* ------------------------------------------------------ */
+/* ------------ Media Queries --------------------------- */
+/* ------------------------------------------------------ */
 @media (min-width: 1000px) {
   .drawn-title {
     min-width: 35%;
@@ -308,7 +533,8 @@ nav.main-nav a {
     font-size: 3.5rem;
   }
   .drawn-title {
-    width: 70%;
+    min-width: 75%;
+    width: 75%;
   }
   .coding-desk {
     bottom: -110px;
@@ -320,8 +546,16 @@ nav.main-nav a {
   }
 }
 @media (max-width: 699px) {
+  .drawn-title {
+    min-width: 80%;
+    width: 80%;
+  }
   h1 {
     font-size: 2.1rem;
+  }
+  p {
+    font-size: 1.1rem;
+    line-height: 1.4rem;
   }
   section.about-copy {
     width: 90%;
