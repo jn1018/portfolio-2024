@@ -1,14 +1,18 @@
 @import "variables";
+@import "mixins";
 @font-face {
-    font-family: 'DRAFTSMAN_CAPS';
-    src: url('../fonts/draftsman-caps.ttf');
+    font-family: 'JEFFS_DRAWING_BOARD';
+    src: url('../fonts/AllOverAgainAllCaps-9GPB.ttf');
 }
 
 * {
     box-sizing: border-box; 
 }
 html, body {
-	margin: 0;
+	height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
 }
 html {
     font-size: 100%;
@@ -25,14 +29,17 @@ body {
     height: 100vh;
     width: 100vw;
 }
-.dimmer {
+#dimmer {
     width: 100vw;
-    height: 100vh;
+    height: 500vh;
     position: absolute;
+    left: 0;
+    top: 0;
     z-index: 2;
     background-color: #000;
-    opacity: 0.3;
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s;
 }
 .grunge-div {
     width: 100%;
@@ -52,13 +59,11 @@ header {
     justify-content:flex-end;
 }
 h1 {
-    font-family: "DRAFTSMAN_CAPS", cursive;
+    font-family: "JEFFS_DRAWING_BOARD", cursive;
+    text-shadow: 0 0 3px rgba(106,106,105,0.3);
     font-weight: 400;
     font-style: normal;
-    text-transform: uppercase;
-    transform: skew(-11deg, 0);
-    letter-spacing: 4px;
-    font-size: 4.5rem;
+    font-size: 2.5rem;
     color: $text-col-light
 }
 .view-project-heading {
@@ -96,13 +101,13 @@ aside#menu-aside {
     width: 18.75rem;
     height: 472px;
     position: fixed;
-    z-index: 10;
+    z-index: 11;
     right: 0;
 }
 .nav-container {
     .nav-item {
         margin: 0 0 30px 0;
-        font-size: 1.95rem;
+        font-size: 1.15rem;
     }
     margin: 4.5rem 1.4rem;
 }
@@ -121,20 +126,32 @@ aside#menu-aside {
     width: 60px;
     height: 35px;
     top: 35px;
-    right: 25px;
-    z-index: 11;
+    right: 20px;
+    z-index: 14;
 }
 #button-lines {
     position: fixed;
     top: 35px;
     right: 25px;
-    z-index: 10;
+    z-index: 13;
+}
+.button-background {
+    position: fixed;
+    background: transparent url('../images/button-scrap-background.png') no-repeat center center;
+    background-size: 70%;
+    top: 16px;
+    right: -4px;
+    width: 110px;
+    height: 65px;
+    z-index: 12;
+    filter: drop-shadow(3px 3px 4px #646259);
 }
 .nav-item {
     color: $text-col;
-    font-family: "DRAFTSMAN_CAPS", cursive;
+    font-family: "JEFFS_DRAWING_BOARD", cursive;
+    text-shadow: 0 0 3px rgba(106,106,105,0.3);
     text-decoration: none;
-    font-weight: 400;
+    font-weight: bold;
     display: block;
     width: max-content;
 }
@@ -211,7 +228,7 @@ nav.main-nav {
 
 .panel-outer-layout {
 	position: relative; 
-    height: 100vh;
+    height: 500vh;
 }
 .panel-container {
     display: flex; 
@@ -233,11 +250,7 @@ nav.main-nav {
     width: 450px;
 }
 .panel-image, .panel-image-lines {
-    position: absolute; 
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0; 
+    @include position-absolute-zero;
     z-index: 0; 
     height: 66%;
     width: 96%;
@@ -247,7 +260,14 @@ nav.main-nav {
     transition-property: transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms; 
-    transition-duration: 300ms; 
+}
+.panel-anim {
+    @include position-absolute-zero;
+}
+.icc-lines {
+    stroke: #e00e1e;
+    stroke-width: 2px;
+    fill: none
 }
 .panel-info {
     display: grid; 
@@ -269,10 +289,14 @@ nav.main-nav {
     font-weight: 900; 
     color: $text-col; 
 }
+.panel-project-link {
+    display: block;
+    font-size: 0.9rem;
+}
 .panels-bottom {
     height: 1px;
 }
-.panel-image-lines, .panel-image {
+.panel-image, .panel-image-lines {
     cursor: pointer;
     border: 12px solid $text-col;
     border-image: url('../images/horiz-line-400.svg') 10 / 8px / 1px stretch;
@@ -303,9 +327,13 @@ nav.main-nav {
     background-size: 70%;
     background-position: 0 112%;
 }
+.project_5 .panel-image-lines {
+    background-size: 102%;
+    background-position: -31px 62%;
+}
 .project_6 .panel-image-lines {
-    background-size: 86%;
-    background-position: 98% -12px;
+    background-size: 85%;
+    background-position: 94% -16px;
 }
 .project_7 .panel-image-lines {
     background-size: 147%;
@@ -366,18 +394,23 @@ nav.main-nav {
 
 /* Project Modal */
 aside#modal-aside {
-    background: $background-col url('../images/ivory-off-white-paper-texture.jpg') no-repeat center center;
+    background: transparent url('../images/project-paper-background.png') no-repeat 0 105px;
     background-size: cover;
-    background-attachment: fixed;
-    filter: drop-shadow(-3px 3px 5px #2b2b2b);
+    filter: drop-shadow(-2px 2px 4px #2b2b2b);
     width: 90%;
-    height: 85%;
+    height: 100%;
     max-height: 100vh;
     position: fixed;
     bottom: 0;
     z-index: 10;
     left: 50%;
     margin-left: -45%;
+}
+aside#modal-aside .close-spacer {
+    cursor: pointer;
+    background-color: transparent;
+    width: 100%;
+    height: 105px;
 }
 aside#modal-aside .project-details {
     padding: 24px;
@@ -393,29 +426,26 @@ aside#modal-aside .project-details {
     background: transparent;
     border: none;
     font-size: 40px;
-    top: 30px;
-    right: 30px;
+    top: 160px;
+    right: 20px;
 }
+
 h1.project-page-heading {
     display: block;
     text-align: left;
-    text-transform: uppercase;
-    transform: skew(-11deg, 0);
-    letter-spacing: 4px;
-    font-family: 'DRAFTSMAN_CAPS';
+    margin: 0.5rem 0 0.5rem 0;
+    font-family: "JEFFS_DRAWING_BOARD", sans-serif;
     font-size: 1.9rem;
-}
-.cap-case {
-    font-size: 2.5rem;
 }
 
 /* Individual Project Components */
 .details-container {
     .details-images {
         img {
-            width: 95%
+            width: 100%
         }
         width: 60%;
+        padding-top: 50px
     }
     .details-copy {
         p {
@@ -424,8 +454,34 @@ h1.project-page-heading {
         }
         .fixed-copy {
             position: fixed;
-            width: 39%;
-            top: 25px;
+            pointer-events: none;
+            width: 36%;
+            top: 165px;
+        }
+        .accordion {
+            h3 {
+                opacity: 0.65;
+                margin-bottom: 0.3rem;
+            }
+            p {
+                margin: 0
+            }
+            overflow: hidden;
+            transition: all 1s;
+        }
+        .accordion .region {
+            display: none;
+        }
+        .view-url {
+            position: fixed;
+            bottom: 60px;
+            left: 24px;
+            display: block;
+            border: 1px solid $text-col;
+            color: $text-col;
+            padding: 4px;
+            margin-top: 1.2rem;
+            text-decoration: none;
         }
         width: 40%;
         text-align: left;
@@ -433,11 +489,24 @@ h1.project-page-heading {
         position: sticky;
         top: 0;
     }
+    .initial {
+        display: block !important;
+    }
 
     display: flex;
     height: 100%;
     width: 100%;
-    padding-right: 20px;
+    position: relative;
+}
+
+#projectDetailNav {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #C00000;
 }
 
 /* Main Animation */
@@ -493,6 +562,74 @@ h1.project-page-heading {
     }
     section.about-copy {
         width: 80%;
+    }
+}
+
+@media (max-width: 999px) {
+    aside#modal-aside {
+        background: none;
+        filter: drop-shadow(-1px 1px 2px #2b2b2b);
+        width: 94%;
+        margin-left: -47%;
+    }
+    aside#modal-aside .close-spacer {
+        height: 120px;
+    }
+    aside#modal-aside .project-details {
+        padding: 0;
+    }
+    #project-modal-close {
+        font-size: 28px;
+        top: 120px;
+        right: 5px;
+        z-index: 31
+    }
+    h1.project-page-heading {
+        margin: 0.5rem 0 0.5rem 0;
+        font-size: 1.1rem;
+    }    
+    .details-container {
+        .details-images {
+            img {
+                width: 90%;
+            }
+            background: transparent url('../images/project-paper-background.png') repeat 0 0;
+            background-attachment: fixed;
+            width: 100%;
+            position: absolute;
+            top: 40%;
+            z-index: 10;
+            padding-top: 0;
+            pointer-events: none;
+        }
+        .details-copy {
+            p {
+                font-size: 0.9rem;
+                line-height: 1.3rem;
+            }
+            .fixed-copy {
+                background: transparent url('../images/project-paper-background.png') no-repeat 0 0;
+                top: 70px;
+                min-height: 48%;
+                padding: 48px 12px 12px 12px;
+                width: 100%;
+            }
+            .accordion {
+                h3 {
+                    margin-bottom: 0.2rem;
+                }
+            }
+            .view-url {
+                display: block;
+                margin-top: 1.2rem;
+            }
+            width: 100%;
+            z-index: 12;
+            display: block
+        }
+        width: 100%;
+        display: block;
+        padding-right: 0;
     }
 }
 

@@ -5,12 +5,24 @@ import {motion, AnimatePresence, useTransform, useScroll, useCycle} from "framer
 // Import Projects component
 import ProjectDetails from "./ProjectDetails";
 
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+/* The following plugin is a Club GSAP perk */
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+gsap.registerPlugin(DrawSVGPlugin);
+
 // Disable body scrolling when project modal is open
 const setHidden = () => {
+  let dimmer = document.getElementById("dimmer");
   if (document.body.style.overflow !== "hidden") {
     document.body.style.overflow = "hidden";
+    dimmer.style.visibility = "visible";
+    dimmer.style.opacity = 0.5;
   } else {
-    document.body.style.overflow = "scroll";
+    document.body.style.overflow = "visible";
+    dimmer.style.opacity = 0;
+    dimmer.style.visibility = "hidden";
   }
 };
 
@@ -25,11 +37,11 @@ const PanelComponent = (props) => {
 
 const HorizontalScrollCarousel = (props) => {
   const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
+  const {scrollYProgress} = useScroll({
+    target: targetRef
   });
   
-  const x = useTransform(scrollYProgress, [0, 1], ["0.5%", "-95%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0", "-95%"]);
   const inputRef = useRef(null);
   const [data, setData] = useState([]);
   const [open, cycleOpen] = useCycle(false, true);
@@ -53,6 +65,19 @@ const HorizontalScrollCarousel = (props) => {
   useEffect(() => {
     fetchData();
   }, []);
+/*
+  useGSAP(() => {
+    var tl = gsap.timeline();
+    // First few lines of each project thumbnail to animate
+    tl.set(".icc-lines", {visibility:"visible"});
+    tl.from(".icc-lines", 
+      { drawSVG:0, 
+        stagger: 0.2, 
+        duration: 0.4, 
+        ease:"power1.inOut"
+      });
+  });
+*/
 
   return (
     <>
@@ -66,6 +91,7 @@ const HorizontalScrollCarousel = (props) => {
             <div key={post.id}
               className={"panel project_" + post.id}
               >
+ 
               <div
                 style={{
                   backgroundImage: `url(${post.image_path_1})`, 
@@ -83,7 +109,9 @@ const HorizontalScrollCarousel = (props) => {
                 <p className="panel-info-title">
                   {post.name}
                 </p>
-                <p className="panel-info-subtitle"><a href={post.project_url} target="_blank">View URL</a></p>
+                <p className="panel-info-subtitle">
+                  <a className="panel-project-link" href={post.project_url} target="_blank">Visit Project</a>
+                </p>
               </div>
             </div>
           ))}
@@ -103,9 +131,8 @@ const HorizontalScrollCarousel = (props) => {
             transition: {delay: 0.2, duration: 0.3}
           }}
         >
-          <div className="project-details">
+          <div className="close-spacer" onClick={function(){ cycleOpen(); setHidden()}}></div>
             <ProjectDetails project={project} />
-          </div>
           <button id="project-modal-close" onClick={function(){ cycleOpen(); setHidden()}}>[x]</button>
         </motion.aside>
       )}

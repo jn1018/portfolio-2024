@@ -1,60 +1,59 @@
-import projimage0 from '../assets/project-images/ppp-1.png';
-import projimage1 from '../assets/project-images/ppp-2.png';
-import projimage2 from '../assets/project-images/ppp-3.png';
+// Import project images
+import projimage0 from '../assets/project-images/ancr-homepage-1.jpg';
+import projimage1 from '../assets/project-images/ancr-contributors-1.jpg';
+import projimage2 from '../assets/project-images/ancr-join-1.jpg';
 
-export default function PPP() {
+export default function ANCR() {
+
     return (
-        <>
         <div className="details-container">
             <section className="details-copy">
                 <div class="fixed-copy">
                     <h1 className="project-page-heading">
-                        Preferred Provider
+                        Alliance for National &amp; Community Resilience (ANCR)
                     </h1>
                     <div id="about" className="accordion">
                         <h3>About</h3>
                         <div role="region" className="region initial">
-                            <p>The Preferred Provider Program, focuses on training opportunities offered by various 
-                                categories of ICC-approved education providers, which collectively form the ICC 
-                                Preferred Provider Network (PPN). 
-                            </p>
+                            <p>How well can your community handle adversity? </p>
                         </div>
                     </div>
                     <div id="roles" className="accordion">
                         <h3>Roles</h3>
                         <div role="region" className="region">
-                            <p>Lead Software Engineer, front and back-end development.</p>
+                            <p>Front-end and backend web developer</p>
                         </div>
                     </div>
                     <div id="highlight" className="accordion">
                         <h3>Highlights</h3>
                         <div role="region" className="region">
-                            <p>Led a wholesale site redesign effort. 
+                            <p>Worked from UI wireframes and mockups to build the web presence.  Contributed on the UI design for 
+                                mobile device screens.
                             </p>
                         </div>
                     </div>
                     <div id="stack" className="accordion">
                         <h3>Stack</h3>
                         <div role="region" className="region">
-                            <p>Joomla/PHP, jQuery, HTML, CSS</p>
+                            <p>Wordpress (using the Divi editor), HTML and CSS</p>
                         </div>
                     </div>
                 </div>
                 <a 
-                    href="https://ppp.iccsafe.org" 
+                    href="https://www.resilientalliance.org/" 
                     target="_blank" 
-                    title="Preferred Provider Program website"
+                    title="Alliance for National &amp; Community Resilience website"
                     className="view-url"
                 >
                     View URL
                 </a>
             </section>
             <section className="details-images">
-                <img src={projimage0} alt="Preferred Provider homepage" /><br />
-                <img src={projimage1} alt="ICC main menu" /><br />
-                <img src={projimage2} alt="ICC 2022 Annual Report microsite homepage" /><br />
+                <img src={projimage0} alt="ANCR homepage full" /><br />
+                <img src={projimage1} alt="ANCR Contributors page" /><br />
+                <img src={projimage2} alt="ANCR Join Us page" />
             </section>
         </div>
-        </>
-    )
-}
+    );
+
+};

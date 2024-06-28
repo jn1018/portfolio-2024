@@ -6,6 +6,7 @@ export default function ProjectsDev() {
 
     return (
         <>
+          <div id="dimmer"></div>
           <motion.img src={drawntitle} alt="Drawn" className="drawn-title" 
             key="drawn-home"
             initial={{ x: -300, opacity: 0 }}

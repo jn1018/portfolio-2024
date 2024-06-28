@@ -20,7 +20,6 @@ function App() {
         <link rel="stylesheet" href="https://use.typekit.net/hvj7zun.css"></link>
         <meta name="description" content="Design, development, and art portfolio of Jeff Nishihira" />
     </Helmet>
-    <div className="dimmer"></div>
     <header>
         <MainNav />
     </header>

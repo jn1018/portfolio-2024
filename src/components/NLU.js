@@ -1,60 +1,58 @@
-import projimage0 from '../assets/project-images/ppp-1.png';
-import projimage1 from '../assets/project-images/ppp-2.png';
-import projimage2 from '../assets/project-images/ppp-3.png';
+// Import project images
+import projimage0 from '../assets/project-images/nlu-1.jpg';
+import projimage1 from '../assets/project-images/nlu-3.png';
 
-export default function PPP() {
+export default function NLU() {
+
     return (
-        <>
         <div className="details-container">
             <section className="details-copy">
                 <div class="fixed-copy">
                     <h1 className="project-page-heading">
-                        Preferred Provider
+                        National Louis University
                     </h1>
                     <div id="about" className="accordion">
                         <h3>About</h3>
                         <div role="region" className="region initial">
-                            <p>The Preferred Provider Program, focuses on training opportunities offered by various 
-                                categories of ICC-approved education providers, which collectively form the ICC 
-                                Preferred Provider Network (PPN). 
-                            </p>
+                            <p>The National Louis University website is the main infomational and 
+                                enrollment property of NLU. </p>
                         </div>
                     </div>
                     <div id="roles" className="accordion">
                         <h3>Roles</h3>
                         <div role="region" className="region">
-                            <p>Lead Software Engineer, front and back-end development.</p>
+                            <p>Front-end and backend web developer</p>
                         </div>
                     </div>
                     <div id="highlight" className="accordion">
                         <h3>Highlights</h3>
                         <div role="region" className="region">
-                            <p>Led a wholesale site redesign effort. 
+                            <p>Transformed the visual identity of the website homepage, providing UI wireframes and high-fidelity
+                                mockups.  Translated the approved mockups into code. 
                             </p>
                         </div>
                     </div>
                     <div id="stack" className="accordion">
                         <h3>Stack</h3>
                         <div role="region" className="region">
-                            <p>Joomla/PHP, jQuery, HTML, CSS</p>
+                            <p>Coldfusion, Javascript, HTML, CSS</p>
                         </div>
                     </div>
                 </div>
                 <a 
-                    href="https://ppp.iccsafe.org" 
+                    href="https://nl.edu" 
                     target="_blank" 
-                    title="Preferred Provider Program website"
+                    title="National Louis University website"
                     className="view-url"
                 >
                     View URL
                 </a>
             </section>
             <section className="details-images">
-                <img src={projimage0} alt="Preferred Provider homepage" /><br />
-                <img src={projimage1} alt="ICC main menu" /><br />
-                <img src={projimage2} alt="ICC 2022 Annual Report microsite homepage" /><br />
+                <img src={projimage0} alt="NLU homepage full" /><br />
+                <img src={projimage1} alt="NLU main menu" /><br />
             </section>
         </div>
-        </>
-    )
-}
+    );
+
+};

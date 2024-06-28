@@ -97,7 +97,7 @@ export default function MainNav() {
                   style={{display: "block"}} 
                   onClick={function(){ cycleOpen(); changeStyle();}}
                 >
-                  <img src={img} title={name} />
+                  {name}
                 </Link>
               ))}
             </motion.div>
@@ -110,6 +110,7 @@ export default function MainNav() {
         <polyline id="b-two" points="0 14.47 5.5 14.47 11 14.47 16.49 14.47 21.99 14.85 27.49 14.47 32.99 14.47 38.48 14.47 47.19 14.11"/>
         <polyline id="b-three" points="0 27.66 5.67 27.66 11.4 27.16 17.01 27.66 22.68 27.66 28.39 28.15 34.02 27.66 39.7 27.66 44.43 27.33"/>
       </svg>
+      <div className="button-background"></div>
     </>
   );
 }
