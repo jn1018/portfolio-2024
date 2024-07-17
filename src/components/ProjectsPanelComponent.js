@@ -1,9 +1,12 @@
-import React, {useRef, useState, useEffect} from "react";
-import axios from "axios";
+import React, {useRef, useState} from "react";
 import {motion, AnimatePresence, useTransform, useScroll, useCycle} from "framer-motion";
 
 // Import Projects component
 import ProjectDetails from "./ProjectDetails";
+import projectsdisplaydata from "./ProjectsDisplayData"; 
+
+// Import Animation Lines
+import AnimProjectLines from "./AnimProjectLines";
 
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -26,6 +29,11 @@ const setHidden = () => {
   }
 };
 
+const setOpacityZero = () => {
+  let iccAnimLines = document.getElementById('AnimationSplash');
+  iccAnimLines.style.display = "none";
+};
+
 const PanelComponent = (props) => {
   return (
     <>
@@ -41,76 +49,120 @@ const HorizontalScrollCarousel = (props) => {
     target: targetRef
   });
   
-  const x = useTransform(scrollYProgress, [0, 1], ["0", "-95%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0", "-94%"]);
   const inputRef = useRef(null);
-  const [data, setData] = useState([]);
+  const animRef = useRef(null);
+  const linesRef = useRef(null);
   const [open, cycleOpen] = useCycle(false, true);
   const [project, setProject] = useState(1);
+  // const [isloading, setIsloading] = useState(false);
 
-  // Fetch data using Axios
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("http://portfolio-2024-API.local/projects/read_by_type.php", {
-        params: {
-          type: props.projectType
+  useGSAP(() => {
+      // const tl = gsap.timeline({ });
+      const tl = gsap.timeline({ onComplete: setOpacityZero });
+      // First few lines of each project thumbnail to animate
+      tl.from(".drawn-lines", { 
+        drawSVG: 0, 
+        duration: 1.5, 
+        ease:"power1.out"
+      })
+      .to(".project_1 .fade-in-lines", {
+        opacity: 1,
+        duration: 1.5,
+        delay: -0.5
+      })
+      .from(".icc-lines", { 
+        drawSVG: 0, 
+        duration: 1.5, 
+        delay: -0.5,
+        ease:"power1.out"
+      })
+      .to(".project_2 .fade-in-lines", {
+        opacity: 1,
+        duration: 1.5,
+        delay: -0.5
+      })
+      .from(".ppp-lines", { 
+        drawSVG: 0, 
+        duration: 1.5, 
+        delay: -0.5,
+        ease:"power1.out",
+      })
+      .to(".project_3 .fade-in-lines", {
+        opacity: 1,
+        duration: 1.5,
+        delay: -0.5
+      })
+      .from(".chipotle-lines", { 
+        drawSVG: 0, 
+        duration: 1.5, 
+        delay: -0.5,
+        ease:"power1.out",
+      })
+      .to(".project_4 .fade-in-lines", {
+        opacity: 1,
+        duration: 1.5,
+        delay: -0.5,
+        onComplete: function () {
+          gsap.set(".project_1 .fade-in-lines", {clearProps: "opacity"});
+          gsap.set(".project_2 .fade-in-lines", {clearProps: "opacity"});
+          gsap.set(".project_3 .fade-in-lines", {clearProps: "opacity"});
+          gsap.set(".project_4 .fade-in-lines", {clearProps: "opacity"});
+          gsap.set(".project_1 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
+          gsap.set(".project_2 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
+          gsap.set(".project_3 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
+          gsap.set(".project_4 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
+          gsap.set(".project_5 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
+          gsap.set(".project_6 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
+          gsap.set(".project_7 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
+          gsap.set(".project_8 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
+          gsap.set(".project_9 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
+          gsap.set(".project_10 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
         }
       });
-      setData(response.data.records);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  // Call fetchData on component mount
-  useEffect(() => {
-    fetchData();
-  }, []);
-/*
-  useGSAP(() => {
-    var tl = gsap.timeline();
-    // First few lines of each project thumbnail to animate
-    tl.set(".icc-lines", {visibility:"visible"});
-    tl.from(".icc-lines", 
-      { drawSVG:0, 
-        stagger: 0.2, 
-        duration: 0.4, 
-        ease:"power1.inOut"
-      });
   });
-*/
 
   return (
     <>
-    <section ref={targetRef} className="panel-outer-layout">
+    <motion.section 
+      ref={targetRef} 
+      className="panel-outer-layout"
+    >
       <div className="panel-container">
+
+        <div ref={animRef} id="AnimationSplash">
+          <AnimProjectLines />
+        </div> 
+
         <motion.div style={{x}} 
           ref={inputRef}
           className="panel-inner-container">
 
-          {data.map((post) => (
+          {projectsdisplaydata.map((post) => (
             <div key={post.id}
               className={"panel project_" + post.id}
               >
- 
               <div
                 style={{
                   backgroundImage: `url(${post.image_path_1})`, 
                   zIndex: "3"
                 }}
-                className="panel-image-lines" 
+                className="panel-image-lines fade-in-lines" 
+                ref={linesRef} 
                 onClick={function(){ cycleOpen(); setHidden(); setProject(post.id);}} 
               ></div>
               <div style={{
                 backgroundImage: `url(${post.image_path_2})`, 
                 zIndex: "2"
                 }} 
-                className="panel-image"></div>
+                className="panel-image">
+              </div>
               <div className="panel-info">
                 <p className="panel-info-title">
                   {post.name}
                 </p>
                 <p className="panel-info-subtitle">
-                  <a className="panel-project-link" href={post.project_url} target="_blank">Visit Project</a>
+                  <a className="panel-project-link" rel="noreferrer" href={post.project_url} target="_blank">Visit Project</a>
                 </p>
               </div>
             </div>
@@ -118,7 +170,7 @@ const HorizontalScrollCarousel = (props) => {
           
         </motion.div>
       </div>
-    </section>
+    </motion.section>
 
     <AnimatePresence>
       {open && (
@@ -133,7 +185,10 @@ const HorizontalScrollCarousel = (props) => {
         >
           <div className="close-spacer" onClick={function(){ cycleOpen(); setHidden()}}></div>
             <ProjectDetails project={project} />
-          <button id="project-modal-close" onClick={function(){ cycleOpen(); setHidden()}}>[x]</button>
+          <button 
+            id="project-modal-close" 
+            onClick={function(){ cycleOpen(); setHidden()}}
+          ></button>
         </motion.aside>
       )}
     </AnimatePresence>

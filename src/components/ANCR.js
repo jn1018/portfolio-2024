@@ -45,7 +45,7 @@ export default function ANCR() {
                     title="Alliance for National &amp; Community Resilience website"
                     className="view-url"
                 >
-                    View URL
+                    Visit Project
                 </a>
             </section>
             <section className="details-images">

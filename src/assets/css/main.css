@@ -1,9 +1,5 @@
 /* Source variables for main stylesheet */
 /* Source variables for main stylesheet */
-@font-face {
-  font-family: "JEFFS_DRAWING_BOARD";
-  src: url("../fonts/AllOverAgainAllCaps-9GPB.ttf");
-}
 * {
   box-sizing: border-box;
 }
@@ -65,11 +61,11 @@ header {
 }
 
 h1 {
-  font-family: "JEFFS_DRAWING_BOARD", cursive;
+  font-family: "FestivoLCWood", cursive;
   text-shadow: 0 0 3px rgba(106, 106, 105, 0.3);
   font-weight: 400;
   font-style: normal;
-  font-size: 2.5rem;
+  font-size: 4rem;
   color: #6A6A69;
 }
 
@@ -107,6 +103,18 @@ section.about-copy {
   opacity: 0.9;
 }
 
+.view-selected-circle {
+  position: fixed;
+  bottom: -1%;
+  right: -1%;
+  width: 190px;
+  z-index: 6;
+  transition: all 0.1s ease-in-out;
+}
+.view-selected-circle:hover {
+  transform: scale(1.3);
+}
+
 aside#menu-aside {
   background: transparent url("../images/menu-paper-background.png") no-repeat top left;
   background-size: cover;
@@ -123,10 +131,10 @@ aside#menu-aside {
 }
 .nav-container .nav-item {
   margin: 0 0 30px 0;
-  font-size: 1.15rem;
+  font-size: 3rem;
 }
 
-#b-one, #b-two, #b-three {
+#b-one, #b-two, #b-three { /* Hamburger Menu Lines */
   fill: none;
   stroke: #6A6A69;
   stroke-miterlimit: 10;
@@ -167,10 +175,10 @@ aside#menu-aside {
 
 .nav-item {
   color: #4a4841;
-  font-family: "JEFFS_DRAWING_BOARD", cursive;
+  font-family: "FestivoLCSketch2", cursive;
   text-shadow: 0 0 3px rgba(106, 106, 105, 0.3);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: normal;
   display: block;
   width: max-content;
 }
@@ -210,38 +218,68 @@ nav.main-nav a {
   margin-left: 0;
 }
 
-/* Project Gallery carousel (draggable) */
-/* Move the following items to a separate project */
-.project-carousel {
-  cursor: grab;
-  overflow: hidden;
-  min-height: 22rem;
-  width: 60%;
-  border-top: 1px solid #4a4841;
-  border-bottom: 1px solid #4a4841;
-}
-
-.inner-carousel {
-  display: flex;
-}
-
-.item {
-  min-height: 20rem;
-  min-width: 13rem;
-  padding: 16px;
-}
-.item img {
-  width: 100%;
-  height: 100%;
-  border-radius: 0.5rem;
-  pointer-events: none;
-}
-
-/* END Move the following items to a separate project */
 /* Project display panels */
+#AnimationSplash { /* A static, in-place panel to mock the animation in the projects gallery before the scroller is active */
+  width: 500vw;
+  height: 450px;
+  opacity: 0.7;
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  gap: 2.5rem;
+  z-index: 6;
+}
+#AnimationSplash .anim-splash {
+  position: relative;
+  height: 288px;
+  width: 428px;
+  overflow: hidden;
+}
+#AnimationSplash .anim-splash svg {
+  position: absolute;
+}
+#AnimationSplash .anim-splash #portfolio-svg {
+  top: -10px;
+  left: -178.5%;
+  width: 392.5%;
+  height: 113%;
+}
+#AnimationSplash .anim-splash #portfolio-svg .drawn-lines {
+  stroke-width: 1.5px;
+}
+#AnimationSplash .anim-splash #icc-svg {
+  top: -8px;
+  left: -60px;
+  width: 124.7%;
+}
+#AnimationSplash .anim-splash #icc-svg .icc-lines {
+  stroke-width: 0.5px;
+}
+#AnimationSplash .anim-splash #ppp-svg {
+  top: 6px;
+  left: -73px;
+  width: 129.5%;
+}
+#AnimationSplash .anim-splash #ppp-svg .ppp-lines {
+  stroke-width: 0.6px;
+}
+#AnimationSplash .anim-splash #chipotle-svg {
+  top: 42px;
+  left: 3px;
+  width: 67%;
+}
+#AnimationSplash .anim-splash #chipotle-svg .chipotle-lines {
+  stroke-width: 0.6px;
+}
+
+.drawn-lines, .icc-lines, .ppp-lines, .chipotle-lines {
+  stroke: #484848;
+  fill: none;
+}
+
 .panel-outer-layout {
   position: relative;
-  height: 500vh;
+  height: 500vh; /* To produce slower horizontal scroll */
 }
 
 .panel-container {
@@ -281,20 +319,6 @@ nav.main-nav a {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
-}
-
-.panel-anim {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.icc-lines {
-  stroke: #e00e1e;
-  stroke-width: 2px;
-  fill: none;
 }
 
 .panel-info {
@@ -339,55 +363,115 @@ nav.main-nav a {
   -o-transition: opacity 0.5s ease-out;
 }
 
-.panel-image-lines {
-  opacity: 1;
-}
-
 .panel-image {
   opacity: 0;
 }
 
+.fade-in-lines {
+  opacity: 0;
+}
+
+.opacity-restore {
+  opacity: 1;
+}
+
+/* Drawn (portfolio project) */
 .project_1 .panel-image-lines {
+  background-size: 36%;
+  background-position: -8px 40%;
+}
+
+/* ICC */
+.project_2 .panel-image-lines {
   background-size: 132%;
   background-position: 54% 45%;
 }
 
-.project_2 .panel-image-lines {
+/* Preferred Provider */
+.project_3 .panel-image-lines {
   background-size: 135%;
   background-position: 55% 8%;
 }
 
-.project_3 .panel-image-lines {
+/* Chipotle */
+.project_4 .panel-image-lines {
+  background-size: 70%;
+  background-position: -0.5px 113.3%;
+}
+
+/* National Louis University */
+.project_5 .panel-image-lines {
   background-size: 71%;
   background-position: 58px -11px;
 }
 
-.project_4 .panel-image-lines {
-  background-size: 70%;
-  background-position: 0 112%;
-}
-
-.project_5 .panel-image-lines {
+/* Digital Codes mobile app */
+.project_6 .panel-image-lines {
   background-size: 102%;
   background-position: -31px 62%;
 }
 
-.project_6 .panel-image-lines {
+/* IAS */
+.project_7 .panel-image-lines {
   background-size: 85%;
   background-position: 94% -16px;
 }
 
-.project_7 .panel-image-lines {
+/* ANCR */
+.project_8 .panel-image-lines {
   background-size: 147%;
   background-position: 41% 5px;
 }
 
-.project_8 .panel-image-lines {
+/* Mearra */
+.project_9 .panel-image-lines {
   background-size: 115%;
   background-position: -22% 33px;
 }
 
+/* NLU Eagles Logo */
+.project_10 .panel-image-lines {
+  background-size: 100%;
+  background-position: 0 6px;
+}
+
 .project_1 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_2 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_3 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_4 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_5 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_6 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_7 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_8 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_9 .panel-image-lines:hover {
+  opacity: 0;
+}
+
+.project_10 .panel-image-lines:hover {
   opacity: 0;
 }
 
@@ -395,59 +479,39 @@ nav.main-nav a {
   opacity: 1;
 }
 
-.project_2 .panel-image-lines:hover {
-  opacity: 0;
-}
-
 .project_2 .panel-image-lines:hover + .panel-image {
   opacity: 1;
-}
-
-.project_3 .panel-image-lines:hover {
-  opacity: 0;
 }
 
 .project_3 .panel-image-lines:hover + .panel-image {
   opacity: 1;
 }
 
-.project_4 .panel-image-lines:hover {
-  opacity: 0;
-}
-
 .project_4 .panel-image-lines:hover + .panel-image {
   opacity: 1;
-}
-
-.project_5 .panel-image-lines:hover {
-  opacity: 0;
 }
 
 .project_5 .panel-image-lines:hover + .panel-image {
   opacity: 1;
 }
 
-.project_6 .panel-image-lines:hover {
-  opacity: 0;
-}
-
 .project_6 .panel-image-lines:hover + .panel-image {
   opacity: 1;
-}
-
-.project_7 .panel-image-lines:hover {
-  opacity: 0;
 }
 
 .project_7 .panel-image-lines:hover + .panel-image {
   opacity: 1;
 }
 
-.project_8 .panel-image-lines:hover {
-  opacity: 0;
+.project_8 .panel-image-lines:hover + .panel-image {
+  opacity: 1;
 }
 
-.project_8 .panel-image-lines:hover + .panel-image {
+.project_9 .panel-image-lines:hover + .panel-image {
+  opacity: 1;
+}
+
+.project_10 .panel-image-lines:hover + .panel-image {
   opacity: 1;
 }
 
@@ -481,13 +545,70 @@ aside#modal-aside .project-details {
   max-height: 100vh;
   position: relative;
 }
+aside#modal-aside .project-details .project-box {
+  display: none;
+}
+aside#modal-aside .project-details .display {
+  display: block;
+}
 
+aside#modal-aside #project-1 {
+  animation: projectDetails 0.9s ease-in;
+}
+
+aside#modal-aside #project-2 {
+  animation: projectDetails 0.9s ease-in;
+}
+
+aside#modal-aside #project-3 {
+  animation: projectDetails 0.9s ease-in;
+}
+
+aside#modal-aside #project-4 {
+  animation: projectDetails 0.9s ease-in;
+}
+
+aside#modal-aside #project-5 {
+  animation: projectDetails 0.9s ease-in;
+}
+
+aside#modal-aside #project-6 {
+  animation: projectDetails 0.9s ease-in;
+}
+
+aside#modal-aside #project-7 {
+  animation: projectDetails 0.9s ease-in;
+}
+
+aside#modal-aside #project-8 {
+  animation: projectDetails 0.9s ease-in;
+}
+
+aside#modal-aside #project-9 {
+  animation: projectDetails 0.9s ease-in;
+}
+
+aside#modal-aside #project-10 {
+  animation: projectDetails 0.9s ease-in;
+}
+
+@keyframes projectDetails {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 #project-modal-close {
   cursor: pointer;
   position: fixed;
-  background: transparent;
+  background: transparent url("../images/round-scribble-close.svg") no-repeat center center;
+  background-size: 100%;
   border: none;
   font-size: 40px;
+  width: 60px;
+  height: 60px;
   top: 160px;
   right: 20px;
 }
@@ -496,8 +617,8 @@ h1.project-page-heading {
   display: block;
   text-align: left;
   margin: 0.5rem 0 0.5rem 0;
-  font-family: "JEFFS_DRAWING_BOARD", sans-serif;
-  font-size: 1.9rem;
+  font-family: "FestivoLCSketch2", sans-serif;
+  font-size: 4rem;
 }
 
 /* Individual Project Components */
@@ -510,6 +631,7 @@ h1.project-page-heading {
 .details-container .details-images {
   width: 60%;
   padding-top: 50px;
+  padding-bottom: 50px;
 }
 .details-container .details-images img {
   width: 100%;
@@ -529,31 +651,25 @@ h1.project-page-heading {
   position: fixed;
   pointer-events: none;
   width: 36%;
-  top: 165px;
-}
-.details-container .details-copy .accordion {
-  overflow: hidden;
-  transition: all 1s;
+  top: 175px;
 }
 .details-container .details-copy .accordion h3 {
-  opacity: 0.65;
   margin-bottom: 0.3rem;
 }
 .details-container .details-copy .accordion p {
   margin: 0;
 }
-.details-container .details-copy .accordion .region {
-  display: none;
-}
 .details-container .details-copy .view-url {
   position: fixed;
-  bottom: 60px;
+  bottom: 80px;
   left: 24px;
   display: block;
-  border: 1px solid #4a4841;
-  color: #4a4841;
-  padding: 4px;
   margin-top: 1.2rem;
+  font-family: "FestivoLCWood", sans-serif;
+  font-size: 2.1rem;
+  line-height: 1.5rem;
+  text-align: center;
+  color: #4a4841;
   text-decoration: none;
 }
 .details-container .initial {
@@ -564,10 +680,25 @@ h1.project-page-heading {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  background-color: #C00000;
+  height: 60px;
+  z-index: 30;
+}
+#projectDetailNav .project-nav {
+  position: absolute;
+  cursor: pointer;
+  background: transparent url("../images/tape-background-300.png") no-repeat 0 0;
+  background-size: 100%;
+  width: 190px;
+  height: 60px;
+  border: none;
+}
+#projectDetailNav .previous {
+  left: -10px;
+  filter: drop-shadow(1px -1px 3px #171717);
+}
+#projectDetailNav .next {
+  right: -10px;
+  filter: drop-shadow(-1px -1px 3px #171717);
 }
 
 /* Main Animation */
@@ -647,7 +778,7 @@ h1.project-page-heading {
   }
   h1.project-page-heading {
     margin: 0.5rem 0 0.5rem 0;
-    font-size: 1.1rem;
+    font-size: 2.8rem;
   }
   .details-container {
     width: 100%;
@@ -661,7 +792,7 @@ h1.project-page-heading {
     position: absolute;
     top: 40%;
     z-index: 10;
-    padding-top: 0;
+    padding-top: 90%;
     pointer-events: none;
   }
   .details-container .details-images img {
@@ -687,8 +818,9 @@ h1.project-page-heading {
     margin-bottom: 0.2rem;
   }
   .details-container .details-copy .view-url {
-    display: block;
-    margin-top: 1.2rem;
+    bottom: 50%;
+    left: 14px;
+    margin-top: none;
   }
 }
 @media (max-width: 699px) {

@@ -1,19 +1,13 @@
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 // Import project images
 import projimage0 from '../assets/project-images/icc-home-1.jpg';
 import projimage1 from '../assets/project-images/icc-home-menu-1.png';
 import projimage2 from '../assets/project-images/icc-2.png';
 import projimage3 from '../assets/project-images/icc-ar-1.jpg';
 
-gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(ScrollTrigger);
-
 export default function ICC() {
 
     return (
+        <>
         <div className="details-container">
             <section className="details-copy">
                 <div class="fixed-copy">
@@ -51,10 +45,11 @@ export default function ICC() {
                     </div>
                 </div>
                 <a 
-                    href="https://nl.edu" 
+                    href="https://www.iccsafe.org" 
                     target="_blank" 
-                    title="National Louis University website"
-                    className="view-url"
+                    title="International Code Council corporate website"
+                    className="view-url" 
+                    rel="noreferrer" 
                 >
                     Visit Project
                 </a>
@@ -70,5 +65,6 @@ export default function ICC() {
                 <br />
             </section>
         </div>
+        </>
     )
 }
