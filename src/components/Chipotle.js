@@ -15,9 +15,9 @@ export default function Chipotle() {
                     <div id="about" className="accordion">
                         <h3>About</h3>
                         <div role="region" className="region initial">
-                            <p>As part of their Food With Integrity campaign, Chipotle hired our client, 
-                                Danaco Solutions, who in turn hired us to build a form for their client, Chipotle, 
-                                to collect detailed information from potential product suppliers. 
+                            <p>Danaco Solutions, at the request of their client Chipotle, approached us about producing a 
+                                "fun and exciting" form for potential produce, meat, or dairy suppliers as part of their 
+                                Food With Integrity campaign.
                             </p>
                         </div>
                     </div>

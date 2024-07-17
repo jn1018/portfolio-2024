@@ -45,7 +45,7 @@ export default function NLU() {
                     title="National Louis University website"
                     className="view-url"
                 >
-                    View URL
+                    Visit Project
                 </a>
             </section>
             <section className="details-images">

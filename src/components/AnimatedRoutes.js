@@ -7,7 +7,6 @@ import Homepage from "./Homepage";
 import About from "./About";
 import Contact from "./Contact";
 import ProjectsDesign from "./ProjectsDesign";
-import ProjectsDev from "./ProjectsDev";
 
 export default function AnimatedRoutes() {
     const location = useLocation();
@@ -17,7 +16,6 @@ export default function AnimatedRoutes() {
                 <Route path="/" element={<Homepage />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/projects-design" element={<ProjectsDesign />} />
-                <Route path="/projects-dev" element={<ProjectsDev />} />
                 <Route path="/contact" element={<Contact />} />
             </Routes>
         </AnimatePresence>

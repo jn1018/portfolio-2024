@@ -13,7 +13,7 @@ import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 gsap.registerPlugin(DrawSVGPlugin);
 
 const links = [
-  { name: "Homepage", img: "/images/home-text.svg", to: "/", id: 1 },
+  { name: "Home", img: "/images/home-text.svg", to: "/", id: 1 },
   { name: "About", img: "/images/about-text.svg", to: "/about", id: 2 },
   { name: "Projects", img: "/images/projects-text.svg", to: "/projects-design", id: 3 },
   { name: "Contact", img: "/images/contact-text.svg", to: "/contact", id: 5 }

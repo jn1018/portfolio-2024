@@ -46,7 +46,7 @@ export default function PPP() {
                     title="Preferred Provider Program website"
                     className="view-url"
                 >
-                    View URL
+                    Visit Project
                 </a>
             </section>
             <section className="details-images">
