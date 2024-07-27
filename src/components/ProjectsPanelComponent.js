@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useEffect, useState} from "react";
 import {motion, AnimatePresence, useTransform, useScroll, useCycle} from "framer-motion";
 
 // Import Projects component
@@ -43,7 +43,9 @@ const PanelComponent = (props) => {
   );
 };
 
+// Start main horizontal scroll carousel 
 const HorizontalScrollCarousel = (props) => {
+
   const targetRef = useRef(null);
   const {scrollYProgress} = useScroll({
     target: targetRef
@@ -55,11 +57,27 @@ const HorizontalScrollCarousel = (props) => {
   const linesRef = useRef(null);
   const [open, cycleOpen] = useCycle(false, true);
   const [project, setProject] = useState(1);
-  // const [isloading, setIsloading] = useState(false);
+  const [isloading, setIsloading] = useState(true);
+
+  // In useEffect, disable and limit scrolling while line animations are running
+
+  useEffect(() => {
+    let scrollDiv = document.getElementById('PanelScrollOuter');
+    /* Leave this for reference in case we need to delay loading on anything later */
+    /*
+    document.body.style.overflow = "hidden";
+    scrollDiv.style.height = "50vh";
+    const timer = setTimeout(() => {
+      scrollDiv.style.height = "500vh";
+      document.body.style.overflow = "visible";
+    }, 8000);
+    return () => clearTimeout(timer);
+    */
+  }, []);
 
   useGSAP(() => {
-      // const tl = gsap.timeline({ });
       const tl = gsap.timeline({ onComplete: setOpacityZero });
+
       // First few lines of each project thumbnail to animate
       tl.from(".drawn-lines", { 
         drawSVG: 0, 
@@ -108,6 +126,7 @@ const HorizontalScrollCarousel = (props) => {
           gsap.set(".project_2 .fade-in-lines", {clearProps: "opacity"});
           gsap.set(".project_3 .fade-in-lines", {clearProps: "opacity"});
           gsap.set(".project_4 .fade-in-lines", {clearProps: "opacity"});
+          
           gsap.set(".project_1 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
           gsap.set(".project_2 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
           gsap.set(".project_3 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
@@ -126,17 +145,28 @@ const HorizontalScrollCarousel = (props) => {
     <>
     <motion.section 
       ref={targetRef} 
-      className="panel-outer-layout"
+      id="PanelScrollOuter" 
+      className="panel-outer-layout" 
     >
       <div className="panel-container">
 
-        <div ref={animRef} id="AnimationSplash">
-          <AnimProjectLines />
-        </div> 
+        <motion.div 
+          style={{x}} 
+          ref={inputRef} 
+          id="ScrollablePanels" 
+          className="panel-inner-container" 
+          key="panel-home"
+        initial={{ x: 300, opacity: 0 }}
+        animate={{ x: 0, opacity: 0.85, transition: {duration: 0.5} }}
+        exit={{ x: -300, opacity: 0, transition: {duration: 0.5} }}
+        >
 
-        <motion.div style={{x}} 
-          ref={inputRef}
-          className="panel-inner-container">
+          <div 
+            ref={animRef} 
+            id="AnimationSplash"
+          >
+            <AnimProjectLines />
+          </div> 
 
           {projectsdisplaydata.map((post) => (
             <div key={post.id}
@@ -168,7 +198,7 @@ const HorizontalScrollCarousel = (props) => {
             </div>
           ))}
           
-        </motion.div>
+        </motion.div> 
       </div>
     </motion.section>
 

@@ -12,6 +12,20 @@ import { useGSAP } from '@gsap/react';
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 gsap.registerPlugin(DrawSVGPlugin);
 
+// Disable body scrolling when project modal is open
+const setHidden = () => {
+  let dimmer = document.getElementById("dimmer");
+  if (document.body.style.overflow !== "hidden") {
+    document.body.style.overflow = "hidden";
+    dimmer.style.visibility = "visible";
+    dimmer.style.opacity = 0.5;
+  } else {
+    document.body.style.overflow = "visible";
+    dimmer.style.opacity = 0;
+    dimmer.style.visibility = "hidden";
+  }
+};
+
 const links = [
   { name: "Home", img: "/images/home-text.svg", to: "/", id: 1 },
   { name: "About", img: "/images/about-text.svg", to: "/about", id: 2 },
@@ -31,6 +45,13 @@ const sideVariants = {
       staggerChildren: 0.2,
       staggerDirection: 1
     }
+  }
+};
+
+// Disable body scrolling when project modal is open
+const setOverflow = () => {
+  if (document.body.style.overflow === "hidden") {
+    document.body.style.overflow = "visible";
   }
 };
 
@@ -95,7 +116,7 @@ export default function MainNav() {
                   to={to}
                   className="nav-item" 
                   style={{display: "block"}} 
-                  onClick={function(){ cycleOpen(); changeStyle();}}
+                  onClick={function(){ cycleOpen(); changeStyle(); setOverflow();}}
                 >
                   {name}
                 </Link>
@@ -104,7 +125,7 @@ export default function MainNav() {
           </motion.aside>
         )}
       </AnimatePresence>
-      <div className={`btn-container ${style}`} onClick={function(){ cycleOpen(); changeStyle(); }}></div>
+      <div className={`btn-container ${style}`} onClick={function(){ cycleOpen(); changeStyle();}}></div>
       <svg id="button-lines" version="1.1" xmlns="http://www.w3.org/2000/svg" width="47.27" height="30.16" viewBox="0 0 47.27 30.16">
         <polyline id="b-one" points="0 2.37 5.5 2.37 11.32 2.7 16.49 2.37 21.99 2.37 27.59 2 32.99 2.37 38.48 2.37 43.98 2.37"/>
         <polyline id="b-two" points="0 14.47 5.5 14.47 11 14.47 16.49 14.47 21.99 14.85 27.49 14.47 32.99 14.47 38.48 14.47 47.19 14.11"/>

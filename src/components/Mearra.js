@@ -41,9 +41,9 @@ export default function Mearra() {
                     </div>
                 </div>
                 <a 
-                    href="https://www.iccsafe.org" 
+                    href="https://lindamsmith.com/mearra/" 
                     target="_blank" 
-                    title="International Code Council corporate website"
+                    title="Mearra ~ Selkie of the Sea website"
                     className="view-url" 
                     rel="noreferrer" 
                 >

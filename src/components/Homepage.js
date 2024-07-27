@@ -35,7 +35,26 @@ export default function Homepage() {
     };
 
     useGSAP(() => {
-      gsap.to('.view-selected-circle', {rotation: 360, duration: 7, ease: "none", repeat:-1});
+      const tl = gsap.timeline({ repeat: -1 });
+      const viewProj = document.getElementById("ViewProjectsCircle");
+      tl.to('.view-selected-circle', {
+        rotation:"+=360", 
+        duration: 8, 
+        ease: 'none'
+      });
+      viewProj.addEventListener("mouseover", (e) => {
+        gsap.to('.view-selected-circle', {
+          scale: 1.15,
+          duration: 0.5,
+        });
+      });
+      viewProj.addEventListener("mouseout", (e) => {
+        gsap.to('.view-selected-circle', {
+          scale: 1,
+          duration: 0.3,
+          ease: "power1.in"
+        });
+      });
     });
 
     return (
@@ -52,6 +71,7 @@ export default function Homepage() {
               <img 
                 to="/projects-design" 
                 src={viewselected} 
+                id="ViewProjectsCircle"  
                 className="view-selected-circle" 
                 alt="View Selected Projects" 
               />

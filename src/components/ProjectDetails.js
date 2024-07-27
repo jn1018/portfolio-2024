@@ -80,8 +80,8 @@ export default function ProjectDetails(props) {
             </div>
         </div>
         <div id="projectDetailNav">
-            <button class="project-nav previous" onClick={() => {scrollBackToTop(); prevProject()}}>Previous</button>
-            <button class="project-nav next" onClick={() => {scrollBackToTop(); nextProject()}}>Next</button>
+            <button class="project-nav previous" onClick={() => {scrollBackToTop(); prevProject()}}>&lArr;</button>
+            <button class="project-nav next" onClick={() => {scrollBackToTop(); nextProject()}}>&rArr;</button>
         </div>
         </>
     );

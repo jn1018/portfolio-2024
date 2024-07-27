@@ -7,6 +7,7 @@ export default function IAS() {
 
     return (
         <div className="details-container">
+            <div className="inner-top-border"></div>
             <section className="details-copy">
                 <div class="fixed-copy">
                     <h1 className="project-page-heading">
