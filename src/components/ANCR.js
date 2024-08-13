@@ -1,8 +1,4 @@
 // Import project images
-import projimage0 from '../assets/project-images/ancr-homepage-1.jpg';
-import projimage1 from '../assets/project-images/ancr-contributors-1.jpg';
-import projimage2 from '../assets/project-images/ancr-join-1.jpg';
-
 export default function ANCR() {
 
     return (
@@ -49,9 +45,9 @@ export default function ANCR() {
                 </a>
             </section>
             <section className="details-images">
-                <img src={projimage0} alt="ANCR homepage full" /><br />
-                <img src={projimage1} alt="ANCR Contributors page" /><br />
-                <img src={projimage2} alt="ANCR Join Us page" />
+                <img src="/project-images-large/ancr-homepage-1.jpg" alt="ANCR homepage full" /><br />
+                <img src="/project-images-large/ancr-contributors-1.jpg" alt="ANCR Contributors page" /><br />
+                <img src="/project-images-large/ancr-join-1.jpg" alt="ANCR Join Us page" />
             </section>
         </div>
     );

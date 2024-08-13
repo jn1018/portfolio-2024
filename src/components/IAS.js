@@ -1,13 +1,7 @@
-// Import project images
-import projimage0 from '../assets/project-images/ias-1.jpg';
-import projimage1 from '../assets/project-images/ias-calibration.png';
-import projimage2 from '../assets/project-images/ias-contact.png';
-
 export default function IAS() {
 
     return (
         <div className="details-container">
-            <div className="inner-top-border"></div>
             <section className="details-copy">
                 <div class="fixed-copy">
                     <h1 className="project-page-heading">
@@ -52,11 +46,11 @@ export default function IAS() {
                 </a>
             </section>
             <section className="details-images">
-                <img src={projimage0} alt="IAS site full homepage" />
+                <img src="/project-images-large/ias-1.jpg" alt="IAS site full homepage" />
                 <br />
-                <img src={projimage1} alt="IAS training homepage example" />
+                <img src="/project-images-large/ias-calibration.png" alt="IAS training homepage example" />
                 <br />
-                <img src={projimage2} alt="IAS Contact page" />
+                <img src="/project-images-large/ias-contact.png" alt="IAS Contact page" />
                 <br />
             </section>
         </div>

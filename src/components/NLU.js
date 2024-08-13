@@ -1,7 +1,3 @@
-// Import project images
-import projimage0 from '../assets/project-images/nlu-1.jpg';
-import projimage1 from '../assets/project-images/nlu-3.png';
-
 export default function NLU() {
 
     return (
@@ -49,8 +45,8 @@ export default function NLU() {
                 </a>
             </section>
             <section className="details-images">
-                <img src={projimage0} alt="NLU homepage full" /><br />
-                <img src={projimage1} alt="NLU main menu" /><br />
+                <img src="/project-images-large/nlu-1.jpg" alt="NLU homepage full" /><br />
+                <img src="/project-images-large/nlu-3.png" alt="NLU main menu" /><br />
             </section>
         </div>
     );

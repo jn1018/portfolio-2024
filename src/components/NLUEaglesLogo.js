@@ -1,9 +1,3 @@
-// Import project images
-import projimage0 from '../assets/project-images/eagle-1.jpg';
-import projimage1 from '../assets/project-images/eagle-2.jpg';
-import projimage2 from '../assets/project-images/eagle-3.jpg';
-import projimage3 from '../assets/project-images/eagle-4.jpg';
-
 export default function NLUEaglesLogo() {
 
     return (
@@ -36,13 +30,13 @@ export default function NLUEaglesLogo() {
                 </div>
             </section>
             <section className="details-images">
-                <img src={projimage0} alt="NLU Eagles (Harrison Professional Pathways Program) Logo" />
+                <img src="/project-images-large/eagle-1.jpg" alt="NLU Eagles (Harrison Professional Pathways Program) Logo" />
                 <br />
-                <img src={projimage1} alt="NLU students wearing T-shirts with logo" />
+                <img src="/project-images-large/eagle-2.jpg" alt="NLU students wearing T-shirts with logo" />
                 <br />
-                <img src={projimage2} alt="Buttons with the logo printed on them" />
+                <img src="/project-images-large/eagle-3.jpg" alt="Buttons with the logo printed on them" />
                 <br />
-                <img src={projimage3} alt="Harrison Professional Pathways Program" />
+                <img src="/project-images-large/eagle-4.jpg" alt="Harrison Professional Pathways Program" />
                 <br />
             </section>
         </div>

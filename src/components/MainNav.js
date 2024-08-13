@@ -12,20 +12,6 @@ import { useGSAP } from '@gsap/react';
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 gsap.registerPlugin(DrawSVGPlugin);
 
-// Disable body scrolling when project modal is open
-const setHidden = () => {
-  let dimmer = document.getElementById("dimmer");
-  if (document.body.style.overflow !== "hidden") {
-    document.body.style.overflow = "hidden";
-    dimmer.style.visibility = "visible";
-    dimmer.style.opacity = 0.5;
-  } else {
-    document.body.style.overflow = "visible";
-    dimmer.style.opacity = 0;
-    dimmer.style.visibility = "hidden";
-  }
-};
-
 const links = [
   { name: "Home", img: "/images/home-text.svg", to: "/", id: 1 },
   { name: "About", img: "/images/about-text.svg", to: "/about", id: 2 },
@@ -50,9 +36,14 @@ const sideVariants = {
 
 // Disable body scrolling when project modal is open
 const setOverflow = () => {
+  let htmldiv = document.documentElement;
   if (document.body.style.overflow === "hidden") {
     document.body.style.overflow = "visible";
+    htmldiv.style.overflowY = "visible";
   }
+  /*if (document.documentElement.style.overflowX === "hidden") {
+    document.documentElement.style.overflowX = "visible";
+  }*/
 };
 
 export default function MainNav() {
