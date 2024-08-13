@@ -1,7 +1,3 @@
-import projimage0 from '../assets/project-images/ppp-1.png';
-import projimage1 from '../assets/project-images/ppp-2.png';
-import projimage2 from '../assets/project-images/ppp-3.png';
-
 export default function PPP() {
     return (
         <>
@@ -50,9 +46,9 @@ export default function PPP() {
                 </a>
             </section>
             <section className="details-images">
-                <img src={projimage0} alt="Preferred Provider homepage" /><br />
-                <img src={projimage1} alt="ICC main menu" /><br />
-                <img src={projimage2} alt="ICC 2022 Annual Report microsite homepage" /><br />
+                <img src="/project-images-large/ppp-1.png" alt="Preferred Provider homepage" /><br />
+                <img src="/project-images-large/ppp-2.png" alt="ICC main menu" /><br />
+                <img src="/project-images-large/ppp-3.png" alt="ICC 2022 Annual Report microsite homepage" /><br />
             </section>
         </div>
         </>

@@ -18,12 +18,15 @@ gsap.registerPlugin(DrawSVGPlugin);
 // Disable body scrolling when project modal is open
 const setHidden = () => {
   let dimmer = document.getElementById("dimmer");
+  let htmldiv = document.documentElement;
   if (document.body.style.overflow !== "hidden") {
     document.body.style.overflow = "hidden";
+    htmldiv.style.overflowY = "hidden";
     dimmer.style.visibility = "visible";
     dimmer.style.opacity = 0.5;
   } else {
     document.body.style.overflow = "visible";
+    htmldiv.style.overflowY = "visible";
     dimmer.style.opacity = 0;
     dimmer.style.visibility = "hidden";
   }
@@ -44,20 +47,19 @@ const PanelComponent = (props) => {
 };
 
 // Start main horizontal scroll carousel 
-const HorizontalScrollCarousel = (props) => {
+const HorizontalScrollCarousel = () => {
 
   const targetRef = useRef(null);
   const {scrollYProgress} = useScroll({
     target: targetRef
   });
   
-  const x = useTransform(scrollYProgress, [0, 1], ["0", "-94%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0", "-90%"]);
   const inputRef = useRef(null);
   const animRef = useRef(null);
   const linesRef = useRef(null);
   const [open, cycleOpen] = useCycle(false, true);
   const [project, setProject] = useState(1);
-  const [isloading, setIsloading] = useState(true);
 
   // In useEffect, disable and limit scrolling while line animations are running
 
@@ -156,9 +158,9 @@ const HorizontalScrollCarousel = (props) => {
           id="ScrollablePanels" 
           className="panel-inner-container" 
           key="panel-home"
-        initial={{ x: 300, opacity: 0 }}
-        animate={{ x: 0, opacity: 0.85, transition: {duration: 0.5} }}
-        exit={{ x: -300, opacity: 0, transition: {duration: 0.5} }}
+        initial={{ x: -300, opacity: 0 }}
+        animate={{ x: 0, opacity: 1, transition: {duration: 0.5} }}
+        exit={{ x: 300, opacity: 0, transition: {duration: 0.5} }}
         >
 
           <div 

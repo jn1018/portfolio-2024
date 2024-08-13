@@ -86,6 +86,10 @@ p {
 section.about-copy {
   width: 60%;
 }
+section.about-copy a {
+  color: #6b6347;
+  text-decoration: underline;
+}
 
 .drawn-title {
   position: fixed;
@@ -626,15 +630,6 @@ h1.project-page-heading {
   width: 100%;
   position: relative;
 }
-.details-container .inner-top-border {
-  position: fixed;
-  top: 105px;
-  width: 61%;
-  height: 80px;
-  right: 0;
-  background-color: #900;
-  z-index: 100;
-}
 .details-container .details-images {
   width: 60%;
   padding-top: 50px;
@@ -701,27 +696,62 @@ h1.project-page-heading {
   font-size: 2.5rem;
 }
 #projectDetailNav .previous {
-  background: transparent url("../images/rectangle-scribble-view.svg") no-repeat 0 0;
-  width: 120px;
-  left: 1px;
+  background: transparent url("../images/tape-background-300.png") no-repeat 0 0;
+  width: 80px;
+  left: -6px;
+  filter: drop-shadow(1px 1px 1px #9B9A98);
   color: #FFF;
 }
 #projectDetailNav .next {
   background: transparent url("../images/tape-background-300.png") no-repeat 0 0;
-  width: 90px;
+  width: 80px;
   right: -10px;
   color: #4a4841;
   filter: drop-shadow(-1px -1px 1px #9B9A98);
 }
 
-/* Main Animation */
-.anim-container {
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-  width: 600px;
+/* Homepage Animation */
+#AnimContainer-Table2 {
+  position: fixed;
+  bottom: -330px;
+  right: -110px;
+  z-index: 2;
+  width: 1100px;
+}
+
+#AnimContainer-Table4, #AnimContainer-Table5 {
+  position: fixed;
+  bottom: -294px;
+  right: -98px;
+  width: 960px;
+}
+
+#AnimContainer-Table4 {
+  z-index: 4;
+}
+
+#AnimContainer-Table5 {
+  z-index: 5;
+  animation: delayAppearance 8.4s linear;
+}
+
+@keyframes delayAppearance {
+  0% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.entrance-bg {
+  position: fixed;
+  bottom: 2px;
+  right: 4px;
+  z-index: 3;
+  width: 650px;
 }
 
 /* Loader */
@@ -771,6 +801,9 @@ h1.project-page-heading {
   }
 }
 @media (max-width: 999px) {
+  body {
+    background-attachment: scroll !important;
+  }
   aside#modal-aside {
     background: none;
     filter: drop-shadow(-1px 1px 2px #2b2b2b);

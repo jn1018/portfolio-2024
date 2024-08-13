@@ -1,10 +1,3 @@
-// Import project images
-import projimage0 from '../assets/project-images/dc-app-1.jpg';
-import projimage1 from '../assets/project-images/dc-app-2.jpg';
-import projimage2 from '../assets/project-images/dc-app-3.jpg';
-import projimage3 from '../assets/project-images/dc-app-4.jpg';
-import projimage4 from '../assets/project-images/dc-app-5.jpg';
-
 export default function DCApp() {
 
     return (
@@ -52,15 +45,15 @@ export default function DCApp() {
                 </a>
             </section>
             <section className="details-images">
-                <img src={projimage0} alt="Digital Codes App - Front Page" />
+                <img src="/project-images-large/dc-app-1.jpg" alt="Digital Codes App - Front Page" />
                 <br />
-                <img src={projimage1} alt="Digital Codes App - Content Search" />
+                <img src="/project-images-large/dc-app-2.jpg" alt="Digital Codes App - Content Search" />
                 <br />
-                <img src={projimage2} alt="Digital Codes App - My Notes tool" />
+                <img src="/project-images-large/dc-app-3.jpg" alt="Digital Codes App - My Notes tool" />
                 <br />
-                <img src={projimage3} alt="Digital Codes App - Chapter details page" />
+                <img src="/project-images-large/dc-app-4.jpg" alt="Digital Codes App - Chapter details page" />
                 <br />
-                <img src={projimage4} alt="Digital Codes App - Create a Bookmark or Note feature" />
+                <img src="/project-images-large/dc-app-5.jpg" alt="Digital Codes App - Create a Bookmark or Note feature" />
                 <br />
             </section>
         </div>

@@ -1,8 +1,3 @@
-import projimage0 from '../assets/project-images/chipotle-0.png';
-import projimage1 from '../assets/project-images/chipotle-1.png';
-import projimage2 from '../assets/project-images/chipotle-2.png';
-import projimage3 from '../assets/project-images/chipotle-3.png';
-
 export default function Chipotle() {
     return (
         <>
@@ -45,10 +40,10 @@ export default function Chipotle() {
                 </div>
             </section>
             <section className="details-images">
-                <img src={projimage0} alt="Chipotle Project Start screen" /><br />
-                <img src={projimage1} alt="Chipotle Project preliminary information screen" /><br />
-                <img src={projimage2} alt="Chipotle Project - example of selecting a type of product" /><br />
-                <img src={projimage3} alt="Chipotle Project - example of selecting multiple locales" /><br />
+                <img src="/project-images-large/chipotle-0.png" alt="Chipotle Project Start screen" /><br />
+                <img src="/project-images-large/chipotle-1.png" alt="Chipotle Project preliminary information screen" /><br />
+                <img src="/project-images-large/chipotle-2.png" alt="Chipotle Project - example of selecting a type of product" /><br />
+                <img src="/project-images-large/chipotle-3.png" alt="Chipotle Project - example of selecting multiple locales" /><br />
             </section>
         </div>
         </>

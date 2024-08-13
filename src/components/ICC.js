@@ -1,9 +1,3 @@
-// Import project images
-import projimage0 from '../assets/project-images/icc-home-1.jpg';
-import projimage1 from '../assets/project-images/icc-home-menu-1.png';
-import projimage2 from '../assets/project-images/icc-2.png';
-import projimage3 from '../assets/project-images/icc-ar-1.jpg';
-
 export default function ICC() {
 
     return (
@@ -55,13 +49,13 @@ export default function ICC() {
                 </a>
             </section>
             <section className="details-images">
-                <img src={projimage0} alt="ICC Corporate site homepage" />
+                <img src="/project-images-large/icc-home-1.jpg" alt="ICC Corporate site homepage" />
                 <br />
-                <img src={projimage1} alt="ICC main menu" />
+                <img src="/project-images-large/icc-home-menu-1.png" alt="ICC main menu" />
                 <br />
-                <img src={projimage2} alt="ICC 2022 Annual Report microsite homepage" />
+                <img src="/project-images-large/icc-2.png" alt="ICC 2022 Annual Report microsite homepage" />
                 <br />
-                <img src={projimage3} alt="CC 2022 Annual Report microsite homepage full" />
+                <img src="/project-images-large/icc-ar-1.jpg" alt="CC 2022 Annual Report microsite homepage full" />
                 <br />
             </section>
         </div>

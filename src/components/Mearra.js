@@ -1,8 +1,3 @@
-// Import project images
-import projimage0 from '../assets/project-images/mearra-1.png';
-import projimage1 from '../assets/project-images/mearra-2.png';
-import projimage2 from '../assets/project-images/mearra-3.png';
-
 export default function Mearra() {
 
     return (
@@ -51,11 +46,11 @@ export default function Mearra() {
                 </a>
             </section>
             <section className="details-images">
-                <img src={projimage0} alt="Mearra ~ Selkie of the Sea homepage" />
+                <img src="/project-images-large/mearra-1.png" alt="Mearra ~ Selkie of the Sea homepage" />
                 <br />
-                <img src={projimage1} alt="Mearra parallax scroll - Story panel" />
+                <img src="/project-images-large/mearra-2.png" alt="Mearra parallax scroll - Story panel" />
                 <br />
-                <img src={projimage2} alt="Mearra background art" />
+                <img src="/project-images-large/mearra-3.png" alt="Mearra background art" />
                 <br />
             </section>
         </div>
