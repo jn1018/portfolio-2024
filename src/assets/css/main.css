@@ -1,5 +1,14 @@
 /* Source variables for main stylesheet */
 /* Source variables for main stylesheet */
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+@font-face {
+  font-family: "FestivoLCSketch2";
+  src: url("/public/fonts/FestivoLCSketch2.woff2") format("woff2"), url("/public/fonts/FestivoLCSketch2.woff") format("woff");
+}
+@font-face {
+  font-family: "FestivoLCWood";
+  src: url("/public/fonts/FestivoLCWood.woff2") format("woff2"), url("/public/fonts/FestivoLCWood.woff") format("woff");
+}
 * {
   box-sizing: border-box;
 }
@@ -15,18 +24,44 @@ html {
   font-size: 100%;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  background: #F7F6F3 url("../images/paper-texture.jpg") center center;
+  background-size: 200px;
+  background-attachment: fixed;
 }
 
 body {
-  background: #F7F6F3 url("../images/ivory-off-white-paper-texture.jpg") no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
-  font-family: "semplicitapro", sans-serif;
-  font-variation-settings: "wght" 600;
+  font-family: "Barlow", sans-serif;
+  font-variation-settings: "wght" 300;
   font-size: 0.95em;
   color: #4a4841;
   height: 100vh;
   width: 100vw;
+}
+
+header {
+  width: 100vw;
+  height: 0;
+  min-height: 65px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+h1 {
+  font-family: "FestivoLCWood", cursive;
+  text-shadow: 0 0 3px rgba(106, 106, 105, 0.3);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4rem;
+  color: #6A6A69;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+
+.view-project-heading {
+  width: 40%;
 }
 
 #dimmer {
@@ -42,6 +77,17 @@ body {
   transition: opacity 1s;
 }
 
+.header-border {
+  border: 1px solid transparent;
+  border-image-source: url("../images/grey-ui-line-horiz.png");
+  border-image-repeat: round;
+  border-image-slice: 20;
+  width: 120%;
+  position: fixed;
+  left: -24px;
+  top: 50px;
+}
+
 .grunge-div {
   width: 100%;
   height: 100%;
@@ -54,33 +100,37 @@ body {
   z-index: 2;
 }
 
-header {
-  width: 100vw;
-  height: 0;
-  display: flex;
-  justify-content: flex-end;
-}
-
-h1 {
-  font-family: "FestivoLCWood", cursive;
-  text-shadow: 0 0 3px rgba(106, 106, 105, 0.3);
-  font-weight: 400;
-  font-style: normal;
-  font-size: 4rem;
-  color: #6A6A69;
-}
-
-.view-project-heading {
-  width: 40%;
-}
-
-p {
-  font-size: 1.2rem;
-  line-height: 1.5rem;
-}
-
-.main {
+main {
   margin-left: 25px;
+  max-width: 1600px;
+}
+
+#loadingTitle {
+  position: absolute;
+  top: 50%;
+  margin-top: -45px;
+}
+
+/********************/
+/* Draw Scroll Intro Animation */
+.draw-jacket {
+  position: relative;
+  height: 100vw;
+  width: 100%;
+}
+.draw-jacket #ScrollPrompt {
+  top: 25% !important;
+}
+.draw-jacket #ScrollPrompt p {
+  padding-top: 15px !important;
+}
+
+#ScrollIntroAnim {
+  position: fixed;
+  position: fixed;
+  bottom: -294px;
+  right: -98px;
+  width: 960px;
 }
 
 section.about-copy {
@@ -91,12 +141,75 @@ section.about-copy a {
   text-decoration: underline;
 }
 
+h1.drawn-billboard {
+  font-family: "FestivoLCSketch2", sans-serif;
+  mix-blend-mode: color-dodge;
+  color: #6A6A69;
+  font-size: 20rem;
+  line-height: 20rem;
+  position: fixed;
+  z-index: 8;
+  bottom: -80px;
+  left: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.title-compartment {
+  background-color: #000;
+  position: fixed;
+  z-index: 7;
+  bottom: 0;
+  left: 16px;
+  width: max-content;
+}
+
 .drawn-title {
   position: fixed;
+  min-width: 300px;
+  top: 4px;
+  left: 24px;
+  display: flex;
+  align-items: left;
+}
+
+.drawn-title, .title-type {
+  font-family: "Barlow", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.title-type {
+  margin: 0;
+  padding: 0;
+}
+
+.title-container {
+  position: relative;
+  display: block;
+  flex-grow: 1;
+  overflow: hidden;
+  margin-left: 4px;
+  height: 1.35rem;
+}
+
+.title-type {
+  position: absolute;
   top: 0;
-  min-width: 35%;
-  opacity: 0.9;
-  margin-left: -24px;
+  left: 0;
+  white-space: nowrap;
+  width: 100%;
+  text-align: left;
+  height: 1.35rem;
+  line-height: 1.35rem;
+  opacity: 0;
+}
+
+.name-text {
+  display: block;
+  position: absolute;
+  width: max-content;
+  left: 122px;
 }
 
 .coding-desk {
@@ -116,6 +229,36 @@ section.about-copy a {
   z-index: 6;
 }
 
+.view-selected-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px;
+  z-index: 6;
+  background-color: #E57607;
+  color: #FFFFFF;
+  font-family: "Barlow", sans-serif;
+  font-size: 2rem;
+  text-align: right;
+  animation: backgroundChangeColor 12s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes backgroundChangeColor {
+  0% {
+    background-color: #E57607;
+  }
+  25% {
+    background-color: #eb4034;
+  }
+  50% {
+    background-color: #9b6ca8;
+  }
+  75% {
+    background-color: #5b9bb3;
+  }
+}
 aside#menu-aside {
   background: transparent url("../images/menu-paper-background.png") no-repeat top left;
   background-size: cover;
@@ -150,28 +293,16 @@ aside#menu-aside {
   background-attachment: fixed;
   width: 60px;
   height: 35px;
-  top: 35px;
+  top: 15px;
   right: 20px;
   z-index: 14;
 }
 
 #button-lines {
   position: fixed;
-  top: 35px;
+  top: 15px;
   right: 25px;
   z-index: 13;
-}
-
-.button-background {
-  position: fixed;
-  background: transparent url("../images/button-scrap-background.png") no-repeat center center;
-  background-size: 70%;
-  top: 16px;
-  right: -4px;
-  width: 110px;
-  height: 65px;
-  z-index: 12;
-  filter: drop-shadow(3px 3px 4px #646259);
 }
 
 .nav-item {
@@ -192,6 +323,40 @@ nav.main-nav a {
   margin: 8px 0 8px 8px;
 }
 
+/* Projects Scroll for More */
+#ScrollPrompt {
+  position: absolute;
+  bottom: 400px;
+  left: 50%;
+  margin-left: -45px;
+  text-align: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 90px;
+  z-index: 9;
+  background-color: #E57607;
+}
+#ScrollPrompt p {
+  color: #FFF;
+  font-size: 0.9rem;
+  line-height: 1rem;
+  font-weight: 500;
+  padding-top: 10px;
+}
+
+.scroll-prompt-fade {
+  opacity: 0;
+  animation: fadePrompt 0.9s ease-out;
+}
+
+@keyframes fadePrompt {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 /* Projects Nav */
 .projects-nav {
   position: fixed;
@@ -327,7 +492,7 @@ nav.main-nav a {
   display: grid;
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 80px;
   left: 0;
   z-index: 10;
   place-content: left;
@@ -342,7 +507,7 @@ nav.main-nav a {
   padding: 1rem 1rem 1rem 0;
   font-size: 1.2rem;
   line-height: 1;
-  font-weight: 900;
+  font-weight: 500;
   color: #4a4841;
 }
 
@@ -357,8 +522,11 @@ nav.main-nav a {
 
 .panel-image, .panel-image-lines {
   cursor: pointer;
-  border: 12px solid #4a4841;
-  border-image: url("../images/horiz-line-400.svg") 10/8px/1px stretch;
+  border: 4px solid #4a4841;
+  border-image-source: url("../images/horiz-line-400.svg");
+  border-image-slice: 10;
+  border-image-width: 8px;
+  border-image-repeat: 1px stretch;
   transition: opacity 0.5s ease-out;
   -moz-transition: opacity 0.5s ease-out;
   -webkit-transition: opacity 0.5s ease-out;
@@ -546,12 +714,18 @@ aside#modal-aside .project-details {
   height: 100%;
   max-height: 100vh;
   position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 aside#modal-aside .project-details .project-box {
   display: none;
 }
 aside#modal-aside .project-details .display {
   display: block;
+}
+
+aside#modal-aside .project-details::-webkit-scrollbar {
+  display: none;
 }
 
 aside#modal-aside #project-1 {
@@ -605,13 +779,13 @@ aside#modal-aside #project-10 {
 #project-modal-close {
   cursor: pointer;
   position: fixed;
-  background: transparent url("../images/round-scribble-close.svg") no-repeat center center;
-  background-size: 85%;
+  background: transparent url("../images/project-close.png") no-repeat left top;
+  background-size: 100%;
   border: none;
   font-size: 40px;
-  width: 70px;
-  height: 70px;
-  top: 150px;
+  width: 50px;
+  height: 75px;
+  top: 100px;
   right: 15px;
 }
 
@@ -710,6 +884,7 @@ h1.project-page-heading {
   filter: drop-shadow(-1px -1px 1px #9B9A98);
 }
 
+/**********************/
 /* Homepage Animation */
 #AnimContainer-Table2 {
   position: fixed;
@@ -732,7 +907,7 @@ h1.project-page-heading {
 
 #AnimContainer-Table5 {
   z-index: 5;
-  animation: delayAppearance 8.4s linear;
+  animation: delayAppearance 11.6s linear;
 }
 
 @keyframes delayAppearance {
@@ -749,47 +924,148 @@ h1.project-page-heading {
 .entrance-bg {
   position: fixed;
   bottom: 2px;
-  right: 4px;
+  right: 56px;
   z-index: 3;
-  width: 650px;
+  width: 565px;
 }
 
-/* Loader */
-.loader {
-  border: 6px solid #f3f3f3; /* Light grey border */
-  border-top: 6px solid #3498db; /* Blue border */
-  border-radius: 50%;
-  animation: spin 2s linear infinite;
+.table-bg {
+  position: fixed;
+  bottom: 2px;
+  right: 56px;
+  z-index: 1;
+  width: 565px;
+}
+
+.typing-blended {
+  mix-blend-mode: multiply;
+}
+
+/* Homepage Code Phrases */
+.montage-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
-@keyframes spin {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+.wrap-1 {
+  bottom: 50px;
+  right: 50px;
 }
+
+.wrap-2 {
+  bottom: 60px;
+  right: 100px;
+}
+
+.wrap-3 {
+  bottom: 100px;
+  right: 20px;
+}
+
+.wrap-4 {
+  bottom: 80px;
+  right: 60px;
+}
+
+.wrap-5 {
+  bottom: 20px;
+  right: 10px;
+}
+
+.text-container-1, .text-container-2, .text-container-3, .text-container-4,
+.text-container-5 {
+  padding: 3px;
+  margin: 0;
+  position: relative;
+  opacity: 0;
+}
+
+.line-1 {
+  font-size: 240%;
+  padding: 6px 0 10px 0 !important;
+}
+
+.line-2 {
+  font-size: 190%;
+}
+
+.line-3 {
+  font-size: 180%;
+}
+
+.line-4 {
+  font-size: 180%;
+}
+
+.line-5 {
+  font-size: 340%;
+  padding: 8px 0 16px 0 !important;
+}
+
+.type-box {
+  position: relative;
+  margin: 0 auto;
+  padding: 4px 0;
+  border-right: 2px solid #ADA185;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-transform: translateY(30%);
+  transform: translateY(30%);
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+/* Typing Animation */
+.anim-typewriter {
+  width: 0;
+  /* color: #BFB59C; */
+  color: #ADA185;
+  font-family: "Anonymous Pro", monospace;
+}
+
+/* Project Detail Parallax Images */
+.details-images {
+  height: 400vh;
+  position: relative;
+}
+
+.proj-image {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.proj-image.one {
+  top: 80px;
+  left: 0;
+}
+
+.proj-image.two {
+  top: 500px;
+  left: 20%;
+  filter: drop-shadow(2px -9px 26px rgba(5, 5, 5, 0.45));
+}
+
+.proj-image.three {
+  top: 1000px;
+  left: 10%;
+  filter: drop-shadow(2px -9px 26px rgba(5, 5, 5, 0.45));
+}
+
+.proj-image.four {
+  top: 1200px;
+  left: 0;
+}
+
 /* ------------------------------------------------------ */
 /* ------------ Media Queries --------------------------- */
 /* ------------------------------------------------------ */
-@media (min-width: 1000px) {
-  .drawn-title {
-    min-width: 35%;
-    width: 35%;
-  }
-}
 @media (min-width: 700px) and (max-width: 999px) {
   h1 {
     font-size: 3.5rem;
-  }
-  .drawn-title {
-    min-width: 75%;
-    width: 75%;
   }
   .coding-desk {
     bottom: -110px;
@@ -818,7 +1094,7 @@ h1.project-page-heading {
   }
   #project-modal-close {
     font-size: 28px;
-    top: 120px;
+    top: 66px;
     right: 5px;
     z-index: 31;
   }
@@ -850,8 +1126,8 @@ h1.project-page-heading {
     display: block;
   }
   .details-container .details-copy p {
-    font-size: 0.9rem;
-    line-height: 1.3rem;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
   }
   .details-container .details-copy .fixed-copy {
     background: transparent url("../images/project-paper-background.png") no-repeat 0 0;
@@ -864,22 +1140,33 @@ h1.project-page-heading {
     margin-bottom: 0.2rem;
   }
   .details-container .details-copy .view-url {
-    bottom: 50%;
-    left: 14px;
+    bottom: 41%;
+    right: -230px;
     margin-top: none;
+    font-size: 1.6rem;
   }
 }
 @media (max-width: 699px) {
-  .drawn-title {
-    min-width: 80%;
-    width: 80%;
-  }
   h1 {
     font-size: 2.1rem;
   }
   p {
     font-size: 1.1rem;
     line-height: 1.4rem;
+  }
+  .drawn-title, .title-type {
+    font-size: 0.9rem;
+  }
+  .drawn-title {
+    left: 16px;
+    top: 10px;
+  }
+  .title-type {
+    height: 1.15rem;
+    line-height: 1.15rem;
+  }
+  .name-text {
+    left: 102px;
   }
   section.about-copy {
     width: 90%;

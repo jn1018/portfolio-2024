@@ -61,77 +61,61 @@ const HorizontalScrollCarousel = () => {
   const [open, cycleOpen] = useCycle(false, true);
   const [project, setProject] = useState(1);
 
-  // In useEffect, disable and limit scrolling while line animations are running
-
-  useEffect(() => {
-    let scrollDiv = document.getElementById('PanelScrollOuter');
-    /* Leave this for reference in case we need to delay loading on anything later */
-    /*
-    document.body.style.overflow = "hidden";
-    scrollDiv.style.height = "50vh";
-    const timer = setTimeout(() => {
-      scrollDiv.style.height = "500vh";
-      document.body.style.overflow = "visible";
-    }, 8000);
-    return () => clearTimeout(timer);
-    */
-  }, []);
-
   useGSAP(() => {
       const tl = gsap.timeline({ onComplete: setOpacityZero });
 
       // First few lines of each project thumbnail to animate
       tl.from(".drawn-lines", { 
         drawSVG: 0, 
-        duration: 1.5, 
+        duration: 1.2, 
         ease:"power1.out"
       })
       .to(".project_1 .fade-in-lines", {
         opacity: 1,
-        duration: 1.5,
+        duration: 1,
         delay: -0.5
       })
       .from(".icc-lines", { 
         drawSVG: 0, 
-        duration: 1.5, 
+        duration: 1.2, 
         delay: -0.5,
         ease:"power1.out"
       })
       .to(".project_2 .fade-in-lines", {
         opacity: 1,
-        duration: 1.5,
+        duration: 1,
         delay: -0.5
       })
       .from(".ppp-lines", { 
         drawSVG: 0, 
-        duration: 1.5, 
+        duration: 1.2, 
         delay: -0.5,
         ease:"power1.out",
       })
       .to(".project_3 .fade-in-lines", {
         opacity: 1,
-        duration: 1.5,
+        duration: 1,
         delay: -0.5
       })
       .from(".chipotle-lines", { 
         drawSVG: 0, 
-        duration: 1.5, 
+        duration: 1.2, 
         delay: -0.5,
         ease:"power1.out",
       })
       .to(".project_4 .fade-in-lines", {
         opacity: 1,
-        duration: 1.5,
+        duration: 1,
         delay: -0.5,
         onComplete: function () {
           gsap.set(".project_1 .fade-in-lines", {clearProps: "opacity"});
+          gsap.set(".project_1 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
           gsap.set(".project_2 .fade-in-lines", {clearProps: "opacity"});
+          gsap.set(".project_2 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
           gsap.set(".project_3 .fade-in-lines", {clearProps: "opacity"});
+          gsap.set(".project_3 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
           gsap.set(".project_4 .fade-in-lines", {clearProps: "opacity"});
           
-          gsap.set(".project_1 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
-          gsap.set(".project_2 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
-          gsap.set(".project_3 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
           gsap.set(".project_4 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
           gsap.set(".project_5 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
           gsap.set(".project_6 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
@@ -193,9 +177,7 @@ const HorizontalScrollCarousel = () => {
                 <p className="panel-info-title">
                   {post.name}
                 </p>
-                <p className="panel-info-subtitle">
-                  <a className="panel-project-link" rel="noreferrer" href={post.project_url} target="_blank">Visit Project</a>
-                </p>
+                
               </div>
             </div>
           ))}

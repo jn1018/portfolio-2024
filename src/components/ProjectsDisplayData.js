@@ -32,7 +32,7 @@ const projectsdisplaydata = [
         name: "National Louis University",
         image_path_1: "/project-images/nlu-project-thumb.svg",
         image_path_2: "/project-images/nlu-thumb.jpg",
-        project_url: "https://www.nl.edu"
+        project_url: "https://web.archive.org/web/20190829023033/https://www.nl.edu/"
     },
     {
         id: 6,
@@ -65,6 +65,13 @@ const projectsdisplaydata = [
     {
         id: 10,
         name: "NLU Eagles logo",
+        image_path_1: "/project-images/nlu-eagles-thumb.svg",
+        image_path_2: "/project-images/nlu-eagle-thumb.jpg",
+        project_url: ""
+    },
+    {
+        id: 11,
+        name: "Chicago Comedy Film Festival poster",
         image_path_1: "/project-images/nlu-eagles-thumb.svg",
         image_path_2: "/project-images/nlu-eagle-thumb.jpg",
         project_url: ""

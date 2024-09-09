@@ -2,13 +2,15 @@
 import React, {useEffect, useState} from 'react';
 import {motion as m} from 'framer-motion';
 import {Link} from 'react-router-dom';
-import drawntitle from '../assets/images/drawn-title-heading.svg';
-import viewselected from '../assets/images/view-selected-projects-graphic.svg';
+import CodePhrases from './CodePhrases';
+// import viewselected from '../assets/images/view-selected-projects-graphic.svg';
 import animbackground from '../assets/images/entrance-background.png';
+import tablebackground from '../assets/images/table-background.png';
 
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import {useGSAP} from '@gsap/react';
 
+// Begin Homepage main export function
 export default function Homepage() {
 
     // Begin Table image group animation
@@ -22,11 +24,11 @@ export default function Homepage() {
 
         function increment() {
           i = i + 1;
-          if (i === 3) {
+          if (i === 4) {
               i = 1;
           }
-          // 27 cycles
-          if (cycles == 27) {
+          // 36 cycles
+          if (cycles === 36) {
             setAnimCycles("tabletype");
           }
           setTableImageIndex(i);
@@ -52,7 +54,7 @@ export default function Homepage() {
       useEffect(() => {
         var i = 1;
         var interval = setInterval(increment, 120); // 120 ms or .72 s per frame
-        const stop = 70;
+        const stop = 98;
 
         function increment() {
           i = i + 1;
@@ -97,6 +99,7 @@ export default function Homepage() {
         <>
           <img 
             id="AnimContainer-Table5" 
+            className="typing-blended" 
             alt="typing loop animation" 
             src={"./anim-images/homepage/typing/typing_" + typeImageIndex + ".svg"} 
           />
@@ -105,56 +108,42 @@ export default function Homepage() {
     };
 
     useGSAP(() => {
-      const tl = gsap.timeline({ repeat: -1 });
-      const viewProj = document.getElementById("ViewProjectsCircle");
-      tl.to('.view-selected-circle', {
-        rotation:"+=360", 
-        duration: 8, 
-        ease: 'none'
-      });
-      viewProj.addEventListener("mouseover", () => {
-        gsap.to('.view-selected-circle', {
-          scale: 1.15,
-          duration: 0.5,
-          ease: "power1.out"
-        });
-      });
-      viewProj.addEventListener("mouseout", () => {
-        gsap.to('.view-selected-circle', {
-          scale: 1,
-          duration: 0.3,
-          ease: "power1.in"
-        });
-      });
+      const tl = gsap.timeline();
+      tl.fromTo(".view-selected-cta", 
+        {width: "0%", opacity: 0}, 
+        {width: "100%", opacity: 1, transformOrigin: "left", duration: 2, ease: "power4.out"}
+      );
     });
 
     return (
         <>
-            <m.img src={drawntitle} alt="Drawn" className="drawn-title" 
-              key="drawn-home"
-              initial={{ x: -300, opacity: 0 }}
-              animate={{ x: 0, opacity: 0.85, transition: {duration: 0.5} }}
-              exit={{ x: 300, opacity: 0, transition: {duration: 0.5} }}
-            />
-            <Link to="/projects-design" 
-                className="cta-link" 
-            >
-              <img 
-                to="/projects-design" 
-                src={viewselected} 
-                id="ViewProjectsCircle"  
-                className="view-selected-circle" 
-                alt="View Selected Projects" 
-              />
-            </Link>
+            <div className="title-compartment">
+              <h1 className="drawn-billboard">Drawn.</h1>
+              <Link to="/projects-design" className="cta-link">
+                  <div id="ViewProjectsCTA" className="view-selected-cta">View Selected Projects</div>
+              </Link>
+            </div>
+            
             <ImageGroupEntrance />
             <ImageGroupTypeLoop />
-            <img src={animbackground} alt="Drawn" className="entrance-bg" 
+            <m.img src={animbackground} 
+              key="anim-background1"
+              alt="Typing character cover" 
+              className="entrance-bg" 
               initial={{ x: -300, opacity: 0 }}
-              animate={{ x: 0, opacity: 0.85, transition: {duration: 0.5} }}
+              animate={{ x: 0, opacity: 1, transition: {duration: 0.5} }}
               exit={{ x: 300, opacity: 0, transition: {duration: 0.5} }}
             />
             <ImageGroupTable />
+            <m.img src={tablebackground} 
+              key="table-background1"
+              alt="Table Animation Cover" 
+              className="table-bg" 
+              initial={{ x: -300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1, transition: {duration: 0.5} }}
+              exit={{ x: 300, opacity: 0, transition: {duration: 0.5} }}
+            />
+            <CodePhrases />
             
         </>
     )

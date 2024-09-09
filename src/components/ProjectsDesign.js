@@ -1,21 +1,30 @@
+import React, {useState, useEffect} from 'react';
+
 import PanelComponent from "./ProjectsPanelComponent";
-import drawntitle from '../assets/images/drawn-title-heading.svg';
-import {motion} from "framer-motion";
-import {Link} from 'react-router-dom';
+import {gsap} from 'gsap';
+import {useGSAP} from "@gsap/react";
 
 export default function ProjectsDev() {
+
+  useGSAP(() => {
+    const tl = gsap.timeline();
+    tl.to('#ScrollPrompt', {repeat: -1, y: -15, yoyo: true});
+  });
+
+  const [scroll, setScroll] = useState(false);
+  
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setScroll(true);
+    });
+  }, []);
 
     return (
         <>
           <div id="dimmer"></div>
-          <Link to="/">
-            <motion.img src={drawntitle} alt="Drawn" className="drawn-title" 
-              key="drawn-home"
-              initial={{ x: -300, opacity: 0 }}
-              animate={{ x: 0, opacity: 0.85, transition: {duration: 0.5} }}
-              exit={{ x: 300, opacity: 0, transition: {duration: 0.5} }}
-            />
-          </Link>
+          <aside id="ScrollPrompt" role="alert" className={scroll ? "scroll-prompt-fade" : ""}>
+            <p>Scroll down for more projects</p>
+          </aside>
           <PanelComponent projectType="3" />
         </>
     );

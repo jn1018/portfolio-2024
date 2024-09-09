@@ -8,6 +8,9 @@ import {AnimatePresence, motion, useCycle} from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
+// Import window hidth and height
+import {useWindowDimensions} from './WindowDimensions';
+
 /* The following plugin is a Club GSAP perk */
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 gsap.registerPlugin(DrawSVGPlugin);
@@ -50,6 +53,7 @@ export default function MainNav() {
   
   const [style, setStyle] = useState("closed");
   const [open, cycleOpen] = useCycle(false, true);
+  const { width } = useWindowDimensions();
 
   const changeStyle = () => {
     if (style !== "closed") {
@@ -66,6 +70,42 @@ export default function MainNav() {
     // Initial hamburger menu animation on page load
     tl.set("#b-one, #b-two, #b-three", {visibility:"visible"});
     tl.from("#b-one, #b-two, #b-three", {drawSVG:0, stagger: 0.7, duration: 0.8, ease:"power1.inOut"});
+
+    const words = gsap.utils.toArray(".title-type");
+
+    var distances = [];
+    if (width >= 700) {
+      distances = [55,29,78];
+    } else {
+      distances = [45,24,62];
+    }
+    const tlw = gsap.timeline({ repeat: -1});
+
+    gsap.set(words, {
+      yPercent: (i) => i && 100,
+      opacity: 1
+    });
+    words.forEach((word, i) => {
+      const next = words[i + 1];
+      if (next) {
+        tlw.to(word, { yPercent: -100 }, "+=1.5").to(next, { yPercent: 0 }, "<");
+        tlw.to(".name-text", {x: distances[i]});   
+      } else {
+        // Final word
+        tlw.to(word, { yPercent: -100 }, "+=1.5").fromTo(
+          words[0],
+          {
+            yPercent: 100
+          },
+          {
+            yPercent: 0,
+            immediateRender: false
+          },
+          "<"
+        );
+        tlw.to(".name-text", {x: 0}); 
+      }
+    });
   });
 
   function animateClosed() {
@@ -83,10 +123,21 @@ export default function MainNav() {
 
   return (
     <>
+      <h1 className="drawn-title">
+        <span className="drawn-name">Drawn ~ the </span>
+        <span className="title-container">
+          <span className="title-type">Art</span>
+          <span className="title-type">Animation</span>
+          <span className="title-type">Design</span>
+          <span className="title-type">Development</span>
+        </span>
+        <span className="name-text">Portfolio of Jeff Nishihira</span>
+      </h1>
       <AnimatePresence>
         {open && (
           <motion.aside
             id="menu-aside" 
+            role="navigation" 
             initial={{width: 0}}
             animate={{width: 300}}
             exit={{
@@ -122,7 +173,6 @@ export default function MainNav() {
         <polyline id="b-two" points="0 14.47 5.5 14.47 11 14.47 16.49 14.47 21.99 14.85 27.49 14.47 32.99 14.47 38.48 14.47 47.19 14.11"/>
         <polyline id="b-three" points="0 27.66 5.67 27.66 11.4 27.16 17.01 27.66 22.68 27.66 28.39 28.15 34.02 27.66 39.7 27.66 44.43 27.33"/>
       </svg>
-      <div className="button-background"></div>
     </>
   );
 }

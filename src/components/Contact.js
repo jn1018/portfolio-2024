@@ -21,7 +21,11 @@ export default function Contact() {
         >
             <p>Email: <a href="mailto:jeffnishihira@gmail.com">jeffnishihira@gmail.com</a></p>
             <p>Phone: 773.350.0546</p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/jeff-nishihira-17a46915" target="_blank">www.linkedin.com/in/jeff-nishihira-17a46915</a></p>
+            <p>LinkedIn: <a 
+            href="https://www.linkedin.com/in/jeff-nishihira-17a46915" 
+            target="_blank" 
+            rel="noreferrer" 
+            >www.linkedin.com/in/jeff-nishihira-17a46915</a></p>
         </m.section>
         <img src={codingdesk} className="coding-desk" alt="Sitting at the desk coding and drinking coffee" />
         </>

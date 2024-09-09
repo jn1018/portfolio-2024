@@ -1,16 +1,21 @@
 import React, {useState, useRef, useCallback} from "react";
 
+import gsap from 'gsap';
+import {useGSAP} from '@gsap/react';
+
 // Import Individual project pages
-import Portfolio from "./Portfolio";
-import ICC from "./ICC";
-import PPP from "./PPP";
-import NLU from "./NLU";
-import Chipotle from "./Chipotle";
-import ANCR from "./ANCR";
-import IAS from "./IAS";
-import DCApp from "./DCApp";
-import Mearra from "./Mearra";
-import NLUEaglesLogo from "./NLUEaglesLogo";
+import Portfolio from "./projects/Portfolio";
+import ICC from "./projects/ICC";
+import PPP from "./projects/PPP";
+import NLU from "./projects/NLU";
+import Chipotle from "./projects/Chipotle";
+import ANCR from "./projects/ANCR";
+import IAS from "./projects/IAS";
+import DCApp from "./projects/DCApp";
+import Mearra from "./projects/Mearra";
+import NLUEaglesLogo from "./projects/NLUEaglesLogo";
+import CCFF from "./projects/CCFF";
+
 
 export default function ProjectDetails(props) {
     // Set previous and next project navigation
@@ -20,12 +25,12 @@ export default function ProjectDetails(props) {
     const [scrollTop, setScrollTop] = useState(0);
 
     function nextProject() {
-        let next = (selectedProject >= 10) ? 1 : selectedProject + 1;
+        let next = (selectedProject >= 11) ? 1 : selectedProject + 1;
         return setSelectedProject(next);
     }
 
     function prevProject() {
-        let prev = (selectedProject <= 1) ? 10 : selectedProject - 1;
+        let prev = (selectedProject <= 1) ? 11 : selectedProject - 1;
         return setSelectedProject(prev);
     }
 
@@ -36,9 +41,19 @@ export default function ProjectDetails(props) {
 
     // Handle scroll and update y position state, show or hide bullet points
     const onScroll = useCallback(() => {
-        const scrollY = window.scrollY;
+        const projImage2 = document.querySelector('.two');
+        const projImage3 = document.querySelector('.three');
+
         setScrollTop(myRef.current.scrollTop);
+        projImage2.style.top = 500 -(myRef.current.scrollTop * 0.8) + 'px';
+        projImage3.style.top = 1000 -(myRef.current.scrollTop * 0.4) + 'px';
     }, [setScrollTop]);
+
+    useGSAP(() => {
+        // Add simple slide up/fade-in animation to project copy div (fixed-copy)
+        const tl = gsap.timeline(); 
+        tl.fromTo(".fixed-copy", {y: 175}, {y: 0, duration: 1});
+    });
 
     return (
         <>
@@ -77,6 +92,9 @@ export default function ProjectDetails(props) {
             </div>
             <div className={`project-box ${selectedProject === 10 ? "display" : ""}`} id="project-10">
                 <NLUEaglesLogo />
+            </div>
+            <div className={`project-box ${selectedProject === 11 ? "display" : ""}`} id="project-11">
+                <CCFF />
             </div>
         </div>
         <div id="projectDetailNav">
