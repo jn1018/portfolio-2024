@@ -9,6 +9,48 @@
   font-family: "FestivoLCWood";
   src: url("/public/fonts/FestivoLCWood.woff2") format("woff2"), url("/public/fonts/FestivoLCWood.woff") format("woff");
 }
+/* Keyframe animations global stylesheet */
+@keyframes backgroundChangeColor {
+  0% {
+    background-color: #E57607;
+  }
+  25% {
+    background-color: #eb4034;
+  }
+  50% {
+    background-color: #9b6ca8;
+  }
+  75% {
+    background-color: #5b9bb3;
+  }
+}
+@keyframes fadeOneToZero {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeZeroToOne {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes delayAppearance {
+  0% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -103,6 +145,23 @@ p {
 main {
   margin-left: 25px;
   max-width: 1600px;
+}
+
+#preloadBar, #preloadFill {
+  position: absolute;
+  left: 0;
+  top: 45%;
+  padding: 8px;
+}
+
+#preloadBar {
+  width: 100%;
+  background-color: #CCC;
+}
+
+#preloadFill {
+  width: 0;
+  background-color: #CC0000;
 }
 
 #loadingTitle {
@@ -245,20 +304,6 @@ h1.drawn-billboard {
   animation-iteration-count: infinite;
 }
 
-@keyframes backgroundChangeColor {
-  0% {
-    background-color: #E57607;
-  }
-  25% {
-    background-color: #eb4034;
-  }
-  50% {
-    background-color: #9b6ca8;
-  }
-  75% {
-    background-color: #5b9bb3;
-  }
-}
 aside#menu-aside {
   background: transparent url("../images/menu-paper-background.png") no-repeat top left;
   background-size: cover;
@@ -346,17 +391,9 @@ nav.main-nav a {
 
 .scroll-prompt-fade {
   opacity: 0;
-  animation: fadePrompt 0.9s ease-out;
+  animation: fadeOneToZero 0.9s ease-out;
 }
 
-@keyframes fadePrompt {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 /* Projects Nav */
 .projects-nav {
   position: fixed;
@@ -605,6 +642,12 @@ nav.main-nav a {
   background-position: 0 6px;
 }
 
+/* CCFF */
+.project_11 .panel-image-lines {
+  background-size: 132%;
+  background-position: -115px -188px;
+}
+
 .project_1 .panel-image-lines:hover {
   opacity: 0;
 }
@@ -645,6 +688,10 @@ nav.main-nav a {
   opacity: 0;
 }
 
+.project_11 .panel-image-lines:hover {
+  opacity: 0;
+}
+
 .project_1 .panel-image-lines:hover + .panel-image {
   opacity: 1;
 }
@@ -682,6 +729,10 @@ nav.main-nav a {
 }
 
 .project_10 .panel-image-lines:hover + .panel-image {
+  opacity: 1;
+}
+
+.project_11 .panel-image-lines:hover + .panel-image {
   opacity: 1;
 }
 
@@ -729,53 +780,49 @@ aside#modal-aside .project-details::-webkit-scrollbar {
 }
 
 aside#modal-aside #project-1 {
-  animation: projectDetails 0.9s ease-in;
+  animation: fadeZeroToOne 0.9s ease-in;
 }
 
 aside#modal-aside #project-2 {
-  animation: projectDetails 0.9s ease-in;
+  animation: fadeZeroToOne 0.9s ease-in;
 }
 
 aside#modal-aside #project-3 {
-  animation: projectDetails 0.9s ease-in;
+  animation: fadeZeroToOne 0.9s ease-in;
 }
 
 aside#modal-aside #project-4 {
-  animation: projectDetails 0.9s ease-in;
+  animation: fadeZeroToOne 0.9s ease-in;
 }
 
 aside#modal-aside #project-5 {
-  animation: projectDetails 0.9s ease-in;
+  animation: fadeZeroToOne 0.9s ease-in;
 }
 
 aside#modal-aside #project-6 {
-  animation: projectDetails 0.9s ease-in;
+  animation: fadeZeroToOne 0.9s ease-in;
 }
 
 aside#modal-aside #project-7 {
-  animation: projectDetails 0.9s ease-in;
+  animation: fadeZeroToOne 0.9s ease-in;
 }
 
 aside#modal-aside #project-8 {
-  animation: projectDetails 0.9s ease-in;
+  animation: fadeZeroToOne 0.9s ease-in;
 }
 
 aside#modal-aside #project-9 {
-  animation: projectDetails 0.9s ease-in;
+  animation: fadeZeroToOne 0.9s ease-in;
 }
 
 aside#modal-aside #project-10 {
-  animation: projectDetails 0.9s ease-in;
+  animation: fadeZeroToOne 0.9s ease-in;
 }
 
-@keyframes projectDetails {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+aside#modal-aside #project-11 {
+  animation: fadeZeroToOne 0.9s ease-in;
 }
+
 #project-modal-close {
   cursor: pointer;
   position: fixed;
@@ -910,17 +957,6 @@ h1.project-page-heading {
   animation: delayAppearance 11.6s linear;
 }
 
-@keyframes delayAppearance {
-  0% {
-    opacity: 0;
-  }
-  99% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 .entrance-bg {
   position: fixed;
   bottom: 2px;

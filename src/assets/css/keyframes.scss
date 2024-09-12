@@ -1,0 +1,21 @@
+/* Keyframe animations global stylesheet */
+
+@keyframes backgroundChangeColor {
+    0% { background-color: #E57607; }
+    25% { background-color: #eb4034; }
+    50% { background-color: #9b6ca8; }
+    75% { background-color: #5b9bb3; }
+}
+@keyframes fadeOneToZero {
+    0% { opacity: 1; }
+    100% { opacity: 0 }
+}
+@keyframes fadeZeroToOne {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes delayAppearance {
+    0% { opacity: 0; }
+    99% { opacity: 0; }
+    100% { opacity: 1; }
+}

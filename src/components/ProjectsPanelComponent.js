@@ -123,6 +123,7 @@ const HorizontalScrollCarousel = () => {
           gsap.set(".project_8 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
           gsap.set(".project_9 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
           gsap.set(".project_10 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
+          gsap.set(".project_11 .fade-in-lines", {className:"panel-image-lines fade-in-lines opacity-restore"});
         }
       });
   });
