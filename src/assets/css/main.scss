@@ -1,6 +1,7 @@
 @import "variables";
 @import "mixins";
 @import "fonts";
+@import "keyframes";
 
 * {
     box-sizing: border-box; 
@@ -85,6 +86,20 @@ p {
 main {
     margin-left: 25px;
     max-width: 1600px;
+}
+#preloadBar, #preloadFill {
+    position: absolute;
+    left: 0;
+    top: 45%;
+    padding: 8px;
+}
+#preloadBar {
+    width: 100%;
+    background-color: #CCC;
+}
+#preloadFill {
+    width: 0;
+    background-color: #CC0000;
 }
 #loadingTitle {
     position: absolute;
@@ -212,12 +227,6 @@ h1.drawn-billboard {
     animation: backgroundChangeColor 12s;
     animation-iteration-count: infinite;
 }
-@keyframes backgroundChangeColor {
-    0% { background-color: #E57607; }
-    25% { background-color: #eb4034; }
-    50% { background-color: #9b6ca8; }
-    75% { background-color: #5b9bb3; }
-}
 aside#menu-aside {
     background: transparent url('../images/menu-paper-background.png') no-repeat top left;
     background-size: cover;
@@ -300,15 +309,9 @@ nav.main-nav {
     z-index: 9;
     background-color: #E57607;
 }
-
 .scroll-prompt-fade {
     opacity: 0;
-    animation: fadePrompt 0.9s ease-out;
-}
-
-@keyframes fadePrompt {
-    0% { opacity: 1; }
-    100% { opacity: 0 }
+    animation: fadeOneToZero 0.9s ease-out;
 }
 
 /* Projects Nav */
@@ -531,12 +534,17 @@ nav.main-nav {
     background-size: 100%;
     background-position: 0 6px;
 }
-@for $i from 1 through 10 {
+/* CCFF */
+.project_11 .panel-image-lines {
+    background-size: 132%;
+    background-position: -115px -188px;
+}
+@for $i from 1 through 11 {
     .project_#{$i} .panel-image-lines:hover {
         opacity: 0
     }
 }
-@for $i from 1 through 10 {
+@for $i from 1 through 11 {
     .project_#{$i} .panel-image-lines:hover + .panel-image {
         opacity: 1
     }
@@ -581,14 +589,10 @@ aside#modal-aside .project-details {
 aside#modal-aside .project-details::-webkit-scrollbar {
     display: none;
 }
-@for $i from 1 through 10 {
+@for $i from 1 through 11 {
     aside#modal-aside #project-#{$i} {
-      animation: projectDetails 0.9s ease-in;
+      animation: fadeZeroToOne 0.9s ease-in;
     }
-}
-@keyframes projectDetails {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
 }
 
 #project-modal-close {
@@ -723,11 +727,6 @@ h1.project-page-heading {
 #AnimContainer-Table5 {
     z-index: 5;
     animation: delayAppearance 11.6s linear;
-}
-@keyframes delayAppearance {
-    0% { opacity: 0; }
-    99% { opacity: 0; }
-    100% { opacity: 1; }
 }
 .entrance-bg {
     position: fixed;

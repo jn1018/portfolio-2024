@@ -72,8 +72,8 @@ const projectsdisplaydata = [
     {
         id: 11,
         name: "Chicago Comedy Film Festival poster",
-        image_path_1: "/project-images/nlu-eagles-thumb.svg",
-        image_path_2: "/project-images/nlu-eagle-thumb.jpg",
+        image_path_1: "/project-images/ccff_project_thumb.svg",
+        image_path_2: "/project-images/ccff-thumb.jpg",
         project_url: ""
     }
   ];

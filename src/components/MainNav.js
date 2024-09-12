@@ -44,9 +44,11 @@ const setOverflow = () => {
     document.body.style.overflow = "visible";
     htmldiv.style.overflowY = "visible";
   }
-  /*if (document.documentElement.style.overflowX === "hidden") {
+  /*
+    if (document.documentElement.style.overflowX === "hidden") {
     document.documentElement.style.overflowX = "visible";
-  }*/
+  }
+  */
 };
 
 export default function MainNav() {

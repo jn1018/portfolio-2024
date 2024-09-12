@@ -7,6 +7,7 @@ import Homepage from "./Homepage";
 import About from "./About";
 import Contact from "./Contact";
 import ProjectsDesign from "./ProjectsDesign";
+import PageNotFound from "./PageNotFound";
 
 export default function AnimatedRoutes() {
     const location = useLocation();
@@ -17,6 +18,7 @@ export default function AnimatedRoutes() {
                 <Route path="/about" element={<About />} />
                 <Route path="/projects-design" element={<ProjectsDesign />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<PageNotFound />} />
             </Routes>
         </AnimatePresence>
     )
