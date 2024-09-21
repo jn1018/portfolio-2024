@@ -88,23 +88,25 @@ main {
     max-width: 1600px;
 }
 #preloadBar, #preloadFill {
+    height: 80px;
     position: absolute;
     left: 0;
-    top: 45%;
-    padding: 8px;
-}
-#preloadBar {
-    width: 100%;
-    background-color: #CCC;
-}
-#preloadFill {
-    width: 0;
-    background-color: #CC0000;
-}
-#loadingTitle {
-    position: absolute;
     top: 50%;
     margin-top: -45px;
+    background-repeat: no-repeat;
+}
+#preloadBar {
+    width: 50%;
+    background-image: url('/public/images/loading-portfolio.svg');
+    z-index: 2;
+    background-position: 2px -1px;
+}
+#preloadFill {
+    mask-image: url('/public/images/loading-mask.svg');
+    -webkit-mask-image: url('/public/images/loading-mask.svg');
+    background-image: url('/public/images/loading-portfolio-color.svg');
+    z-index: 3;
+    background-position: 0 0;
 }
 /********************/
 /* Draw Scroll Intro Animation */
@@ -113,7 +115,8 @@ main {
         p {
             padding-top: 15px !important;
         }
-        top: 25% !important;
+        top: 20% !important;
+        animation: slideFadeInDown 0.9s ease-in;
     }
     position: relative;
     height: 100vw;
