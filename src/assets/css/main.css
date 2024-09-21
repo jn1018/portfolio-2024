@@ -40,6 +40,15 @@
     opacity: 1;
   }
 }
+@keyframes slideFadeInDown {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    top: 25%;
+  }
+}
 @keyframes delayAppearance {
   0% {
     opacity: 0;
@@ -148,26 +157,27 @@ main {
 }
 
 #preloadBar, #preloadFill {
+  height: 80px;
   position: absolute;
   left: 0;
-  top: 45%;
-  padding: 8px;
+  top: 50%;
+  margin-top: -45px;
+  background-repeat: no-repeat;
 }
 
 #preloadBar {
-  width: 100%;
-  background-color: #CCC;
+  width: 50%;
+  background-image: url("/public/images/loading-portfolio.svg");
+  z-index: 2;
+  background-position: 2px -1px;
 }
 
 #preloadFill {
-  width: 0;
-  background-color: #CC0000;
-}
-
-#loadingTitle {
-  position: absolute;
-  top: 50%;
-  margin-top: -45px;
+  mask-image: url("/public/images/loading-mask.svg");
+  -webkit-mask-image: url("/public/images/loading-mask.svg");
+  background-image: url("/public/images/loading-portfolio-color.svg");
+  z-index: 3;
+  background-position: 0 0;
 }
 
 /********************/
@@ -178,7 +188,8 @@ main {
   width: 100%;
 }
 .draw-jacket #ScrollPrompt {
-  top: 25% !important;
+  top: 20% !important;
+  animation: slideFadeInDown 0.9s ease-in;
 }
 .draw-jacket #ScrollPrompt p {
   padding-top: 15px !important;

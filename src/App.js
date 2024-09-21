@@ -1,6 +1,9 @@
 /* Import React */
 import React, {useState, useEffect} from 'react';
 
+// Import cookies 
+import { useCookies } from 'react-cookie';
+
 /* Import React and framer motion components */
 import {Helmet} from "react-helmet";
 
@@ -13,9 +16,11 @@ import { PRELOADIMAGES } from "./components/PreloadImages";
 /* Import main navigation components */
 import MainNav from "./components/MainNav";
 import AnimatedRoutes from "./components/AnimatedRoutes";
+import ProgressBar from "./components/ProgressBar";
 
 function App() {
-  const [imgsLoaded, setImgsLoaded] = useState(false); // get images for preload
+  const [imgsLoaded, setImgsLoaded] = useCookies(false); // get images for preload
+  const [failSafe, setFailSafe] = useState(false);
   
   useEffect(() => {
     // Begin preload function
@@ -23,17 +28,17 @@ function App() {
       return new Promise((resolve, reject) => {
         const loadImg = new Image();
         loadImg.src = image.url;
-        loadImg.onload = () => resolve(image.url);
+        loadImg.onload = () =>
           setTimeout(() => {
             resolve(image.url);
-          }, 0);
-
+            setFailSafe(true);
+          }, 6000);  
         loadImg.onerror = err => reject(err);
-      })
+      });
     }
 
     Promise.all(PRELOADIMAGES.map(image => loadImage(image)))
-      .then(() => setImgsLoaded(true))
+      .then(() => setImgsLoaded('imagesLoaded', true))
       .catch(err => console.log("Failed to load images", err))
   }, []);
 
@@ -51,18 +56,18 @@ function App() {
         <meta name="description" content="Design, development, and art portfolio of Jeff Nishihira" />
     </Helmet>
     <main>
-        {imgsLoaded ? 
-          <>
-            <header>
-              <MainNav />
-              <hr className="header-border" />
-            </header>
-            <AnimatedRoutes />
-          </>
-          :
-          <> 
-            <h1 id="loadingTitle">Loading portfolio</h1>
-          </>
+        {imgsLoaded.imagesLoaded || failSafe ? 
+            <>
+              <header>
+                <MainNav />
+                <hr className="header-border" />
+              </header>
+              <AnimatedRoutes />
+            </>
+          : 
+            <> 
+              <ProgressBar />
+            </>
         }
     </main>
     </>

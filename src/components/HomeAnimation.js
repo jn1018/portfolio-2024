@@ -31,6 +31,7 @@ export default function HomeAnimation() {
             setTableImageIndex(i);
             cycles = cycles + 1;
             }
+            return () => clearInterval(interval);
         }, []);
 
         return (
@@ -84,12 +85,13 @@ export default function HomeAnimation() {
             const stop = 7;
 
             function increment() {
-            i = i + 1;
-            if (i === stop) {
-                i = 1;
+                i = i + 1;
+                if (i === stop) {
+                    i = 1;
+                }
+                setTypeImageIndex(i);
             }
-            setTypeImageIndex(i);
-            }
+            return () => clearInterval(interval);
         }, []);
 
         return (

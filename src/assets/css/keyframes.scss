@@ -14,6 +14,10 @@
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+@keyframes slideFadeInDown {
+    0% { opacity: 0; }
+    100% { opacity: 1; top: 25%; }
+}
 @keyframes delayAppearance {
     0% { opacity: 0; }
     99% { opacity: 0; }

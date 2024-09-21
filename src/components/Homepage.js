@@ -58,7 +58,6 @@ export default function Homepage() {
 
     const tl = gsap.timeline();
     tl.to('#ScrollPrompt', {repeat: -1, y: -15, yoyo: true});
-
     tl.fromTo(".view-selected-cta", 
       {width: "0%", opacity: 0}, 
       {width: "100%", opacity: 1, transformOrigin: "left", duration: 2, ease: "power4.out"}
@@ -86,10 +85,10 @@ export default function Homepage() {
                   <p>Scroll down<br />to draw me</p>
                   </aside>
                   <img 
-                  style={{display: animAppearance}} 
-                  id="ScrollIntroAnim" 
-                  alt="on scroll animation intro" 
-                  src={"./anim-images/intro/drawintro_" + entImageIndex + ".svg"} 
+                    style={{display: animAppearance}} 
+                    id="ScrollIntroAnim" 
+                    alt="on scroll animation intro" 
+                    src={"./anim-images/intro/drawintro_" + entImageIndex + ".svg"} 
                   />
                 </div>
             </>
